@@ -15,13 +15,6 @@ let previous = document.querySelector(".back")
 let next = document.querySelector(".next")
 let test = 0
 
-setInterval(() => {
-  if(window.innerWidth <= 520) {
-    previous.style.display = 'none'
-    next.style.display = 'none'
-  }
-
-}, 1000);
 
 next.addEventListener('click' , () => {
   sugg.scrollBy(
@@ -112,3 +105,24 @@ accPic.addEventListener('mouseleave', () => {
     }, 300);
   }
   })
+
+let MobileSearchIcon = document.getElementById('Search')
+let MobileSearchBar = document.querySelector('.m-search')
+let MobileSearchBack = document.querySelector('.m-search .m-back')
+
+MobileSearchIcon.addEventListener('click', () => {
+  if(window.innerWidth <= 520) {
+    MobileSearchBar.style.display = 'flex'
+    setTimeout(() => {
+      MobileSearchBar.style.top = '0'
+    }, 10);
+  }
+})
+MobileSearchBack.addEventListener('click', () => {
+  if(window.innerWidth <= 520) {
+    MobileSearchBar.style.top = '-54px'
+    setTimeout(() => {
+      MobileSearchBar.style.display = 'none'
+    }, 100);
+  }
+})
