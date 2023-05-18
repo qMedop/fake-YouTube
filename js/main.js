@@ -73,8 +73,14 @@ accPic.addEventListener('mouseleave', () => {
     }, 100);
   }
   })
+
+  let SettingsPcValue = 0
+    accSettings.onclick = function() {
+      SettingsPcValue = 1
+    }
   accContainer.addEventListener('click', () => {
-    if(window.innerWidth > 520) {
+    setTimeout(() => {
+      if(window.innerWidth > 520 && SettingsPcValue == 0) {
     accContainer.style.opacity = '0'
     accPic.style.border = '0px solid #3ea6ff'
     accSettings.style.right = '0px'
@@ -82,6 +88,10 @@ accPic.addEventListener('mouseleave', () => {
       accContainer.style.display = 'none'
     }, 300);
   }
+    }, 10);
+  setTimeout(() => {
+    SettingsPcValue = 0
+  }, 20);
   })
 
   accPic.addEventListener('click', () => {
@@ -92,7 +102,7 @@ accPic.addEventListener('mouseleave', () => {
     setTimeout(() => {
       accContainer.style.opacity = '1'
       accSettings.style.top = '0'
-    }, 100);
+    }, 10);
   }
   })
   closeSettings.addEventListener('click', () => {
@@ -106,23 +116,36 @@ accPic.addEventListener('mouseleave', () => {
   }
   })
 
+let MobileSearchContainer = document.querySelector('.m-search-container')
 let MobileSearchIcon = document.getElementById('Search')
 let MobileSearchBar = document.querySelector('.m-search')
 let MobileSearchBack = document.querySelector('.m-search .m-back')
 
+let MobileSearchContainerValue = 0
+
+MobileSearchBar.addEventListener('click', () => {
+  MobileSearchContainerValue = 1
+})
 MobileSearchIcon.addEventListener('click', () => {
   if(window.innerWidth <= 520) {
-    MobileSearchBar.style.display = 'flex'
+    MobileSearchContainer.style.display = 'flex'
     setTimeout(() => {
       MobileSearchBar.style.top = '0'
     }, 10);
   }
 })
 MobileSearchBack.addEventListener('click', () => {
-  if(window.innerWidth <= 520) {
-    MobileSearchBar.style.top = '-54px'
-    setTimeout(() => {
-      MobileSearchBar.style.display = 'none'
-    }, 100);
+  MobileSearchBar.style.top = '-54px'
+  setTimeout(() => {
+    MobileSearchContainer.style.display = 'none'
+  }, 100);
+})
+MobileSearchContainer.addEventListener('click', () => {
+  if (MobileSearchContainerValue == 0) {
+  MobileSearchBar.style.top = '-54px'
+  setTimeout(() => {
+    MobileSearchContainer.style.display = 'none'
+  }, 100);
   }
+  MobileSearchContainerValue = 0
 })
