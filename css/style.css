@@ -356,19 +356,22 @@ nav .third {
 
 .right-nav-open {
   z-index: 1000;
-  left: -300px;
+  left: -240px;
   transition: .5s;
   -webkit-transition: .5s;
   -moz-transition: .5s;
   -ms-transition: .5s;
   -o-transition: .5s;
-  left: 0px;
   top: 0;
   background-color: #0f0f0f;
   padding: 7px 16px;
   width: 240px;
 }
-
+@media (max-width: 520px) {
+  .right-nav-open {
+    display: none;
+  }
+}
 .right-nav-open .first {
   padding-bottom: 19px;
 }
