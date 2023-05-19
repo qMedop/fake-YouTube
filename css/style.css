@@ -5,6 +5,9 @@
   list-style: none;
   box-sizing: border-box;
 }
+body {
+  background-color: #0f0f0f;
+}
 ::-webkit-scrollbar {
   width: 4px;
   height: 0px;
@@ -408,6 +411,7 @@ nav .third {
   -ms-transition: .1s;
   -o-transition: .1s;
   justify-content: space-between;
+  border-top: 1px solid #505050;
 }
 .right-nav-mobile .left div {
   display: flex;
@@ -814,6 +818,8 @@ nav .account {
     -ms-border-radius: 0;
     -o-border-radius: 0;
     top: 100%;
+    height: 100vh;
+    max-height: 100vh;
   }
   .account .account-setting .account-s {
     width: 100%;
@@ -934,10 +940,8 @@ nav .account {
   position: absolute;
   display: flex;
   flex-direction: column;
-  top: 33px;
-  left: -400px;
-  width: 400px;
-  height: 500px;
+  top: 6px;
+  width: 480px;
   background-color: #282828;
   border-radius: 13px;
   -webkit-border-radius: 13px;
@@ -947,33 +951,54 @@ nav .account {
   font-family: 'Roboto';
   color: #f1f1f1;
   overflow-y: scroll;
-  display: none;
+  z-index: 20;
+  transition: .2s;
+  -webkit-transition: .2s;
+  -moz-transition: .2s;
+  -ms-transition: .2s;
+  -o-transition: .2s;
+  right: -490px;
+  height: calc(100vh - 15px);
+  max-height: 650px;
+  z-index: 101;
 }
 .open-notifications::-webkit-scrollbar {
-  display: none;
+  display: block;
+  width: 1px;
+}
+.open-notifications::-webkit-scrollbar-track {
+  margin: 12px;
+  background-color: #282828;
 }
 .open-notifications .headding {
   position: fixed;
-  height: 55px;
   display: flex;
-  width: 400px;
+  width: 480px;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 6px;
   border-bottom: 1px solid #505050;
-  padding: 10px;
   background-color: #282828;
   border-radius: 13px 13px 0 0;
 }
 .open-notifications .headding .settings-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.open-notifications .headding .settings-icon:hover {
+  background-color: #505050;
 }
 .open-notifications .headding .settings-icon svg {
   width: 22px;
 }
 .open-notifications .headding h1 {
-  font-size: 20px;
+  font-size: 18px;
+  padding: 10px;
 }
 .open-notifications h1 {
   font-weight: 400;
@@ -1011,8 +1036,37 @@ nav .account {
   color: #aaa;
 }
 .open-notifications  .notif .vid-img img {
-  width: 90px;
-    height: 55px;
-    margin-right: 14px;
-    border-radius: 6px;
+  width: 85px;
+  height: 50px;
+  margin-right: 25px;
+  border-radius: 6px;
+}
+@media (max-width: 680px) {
+  .open-notifications {
+    right: 0;
+    bottom: -600px;
+    height: 100vh;
+    width: 100%;
+    border-radius: 0;
+    top: unset;
+    display: none;
+    max-height: 100vh;
+    opacity: 0;
+  }
+  .open-notifications .notif .vid-img img {
+    width: 65px;
+    height: 40px;
+    margin-right: 15px;
+  }
+  .open-notifications  .notif .text h1 {
+    font-size: 15px;
+  }
+  .open-notifications .headding {
+    width: 100%;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+}
 }
