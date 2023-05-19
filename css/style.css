@@ -558,7 +558,7 @@ nav .third {
 .landing .sugg .active:hover {
   background-color: #f1f1f1;
 }
-@media (max-width: 520px) {
+@media (max-width: 620px) {
   .landing {
     background-color: #0f0f0f;
     transform: translateX(72px) translateY(54px);
@@ -1070,4 +1070,78 @@ nav .account {
     -ms-border-radius: 0;
     -o-border-radius: 0;
 }
+}
+
+.search-landing {
+  width: 100%;
+  height: calc(100vh - 111px);
+}
+.search-landing .filter {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 10px 4px;
+}
+.search-landing .filter::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 1px;
+  background:   linear-gradient(90deg,rgba(33,33,33,0) -23%,#505050 50%,rgba(33,33,33,0) 100%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+}
+.search-landing .filter h1 {
+  color: #f1f1f1;
+  font-family: 'Roboto';
+  font-size: 19px;
+  font-weight: 300;
+}
+.search-landing .filter .svg {
+  margin-right: 4px;
+}
+.search-landing .content {
+  height: calc(100% - 44px);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.search-landing .content .svg {
+  margin-top: 40px;
+}
+.search-landing .content svg {
+  width: 500px;
+  height: 300px;
+}
+
+.search-page {
+  min-height: calc(100vh - 54px);
+}
+.search-landing .content h1 {
+  font-weight: 300;
+  font-size: 26px;
+  color: #f1f1f1;
+  font-family: 'Roboto';
+  margin-top: 10px;
+}
+@media (max-width: 620px) {
+  .search-landing .content svg {
+    width: 240px;
+    height: 200px;
+  }
+  .right-nav {
+    top: unset;
+    bottom: 0;
+    left: 0;
+    display: none;
+  }
+  .search-landing .content h1 {
+    font-size: 18px;
+    margin-top: 0;
+  }
 }
