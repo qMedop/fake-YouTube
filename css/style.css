@@ -278,25 +278,40 @@ nav .third {
 .third .notifications:hover::after {
   display: block;
 }
+.right-nav-mobile {
+  display: none;
 }
-
-.right-nav .left {
-  display: flex;
-  flex-direction: column;
-  width: 72px;
-  background-color: #0f0f0f;
-  height: calc(100vh - 54px);
+}
+.right-nav,
+.right-nav-open {
   position: fixed;
-  left: 0;
-  padding: 0 4px;
+  left: 0px;
   top: 54px;
+  z-index: 1;
   transition: .1s;
   -webkit-transition: .1s;
   -moz-transition: .1s;
   -ms-transition: .1s;
   -o-transition: .1s;
 }
-.right-nav .left div {
+
+.right-nav .left ,
+.right-nav-open .left{
+  display: flex;
+  flex-direction: column;
+  width: 73px;
+  background-color: #0f0f0f;
+  height: calc(100vh - 54px);
+  padding: 0 4px;
+  transition: .1s;
+  -webkit-transition: .1s;
+  -moz-transition: .1s;
+  -ms-transition: .1s;
+  -o-transition: .1s;
+}
+
+.right-nav .left div,
+.right-nav-open .left div{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -313,7 +328,9 @@ nav .third {
   -ms-transition: .2s;
   -o-transition: .2s;
 }
-.right-nav .left .subs span{
+
+.right-nav .left .subs span,
+.right-nav-open .left .subs span{
   font-size: 11.4px;
 }
 @media (min-width: 520px) {
@@ -322,7 +339,8 @@ nav .third {
 }
 }
 
-.right-nav .left span {
+.right-nav .left span,
+.right-nav-open .left span{
   color: #fff;
   max-width: 100%;
   display: block;
@@ -335,16 +353,113 @@ nav .third {
   line-height: 1.4rem;
   margin-top: 4px;
 }
+
+.right-nav-open {
+  z-index: 1000;
+  left: -300px;
+  transition: .5s;
+  -webkit-transition: .5s;
+  -moz-transition: .5s;
+  -ms-transition: .5s;
+  -o-transition: .5s;
+  left: 0px;
+  top: 0;
+  background-color: #0f0f0f;
+  padding: 7px 16px;
+  width: 240px;
+}
+
+.right-nav-open .first {
+  padding-bottom: 19px;
+}
+.right-nav-open .left {
+  width: 100%;
+  padding: 9px;
+}
+.right-nav-open .left div {
+  flex-direction: row;
+}
+.right-nav-mobile {
+  position: fixed;
+  bottom: 0;
+  top: unset;
+  z-index: 1;
+  transition: .1s;
+  -webkit-transition: .1s;
+  -moz-transition: .1s;
+  -ms-transition: .1s;
+  -o-transition: .1s;
+  width: 100%;
+  left: 0;
+  z-index: 1;
+}
+.right-nav-mobile .left {
+  display: flex;
+  flex-direction: revert;
+  width: 100%;
+  background-color: #0f0f0f;
+  padding: 0 4px;
+  transition: .1s;
+  -webkit-transition: .1s;
+  -moz-transition: .1s;
+  -ms-transition: .1s;
+  -o-transition: .1s;
+  justify-content: space-between;
+}
+.right-nav-mobile .left div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 14px 16px;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  cursor: pointer;
+  transition: .2s;
+  -webkit-transition: .2s;
+  -moz-transition: .2s;
+  -ms-transition: .2s;
+  -o-transition: .2s;
+}
+.right-nav-mobile .left span  {
+  color: #fff;
+  display: none;
+  max-width: 100%;
+  max-height: 1.4rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4rem;
+  margin-top: 4px;
+}
+.right-nav-mobile .left .home {
+  order: 3;
+}
+.right-nav-mobile .left .downloads {
+  order: 5;
+}
+.right-nav-mobile .left .library {
+  order: 2;
+}
+.right-nav-mobile .left .subs {
+  order: 4;
+}
 @media (max-width: 520px) {
   nav {
     padding: 2px 8px;
     border-bottom: 1px solid #505050;
   }
+  .right-nav {
+    top: unset;
+    bottom: 0;
+    left: 0;
+    display: none;
+  }
   .right-nav .left { 
-    top: calc(100% - 52px);
-    bottom: 76px;
-    z-index: 1;
-    flex-direction: revert;
     width: 100%;
     height: 52px;
     justify-content: space-around;
@@ -381,13 +496,13 @@ nav .third {
 }
 .landing {
   background-color: #0f0f0f;
-  transform: translateX(72px) translateY(54px);
-  -webkit-transform: translateX(72px) translateY(54px);
-  -moz-transform: translateX(72px) translateY(54px);
-  -ms-transform: translateX(72px) translateY(54px);
-  -o-transform: translateX(72px) translateY(54px);
+  transform: translateX(73px) translateY(54px);
+  -webkit-transform: translateX(73px) translateY(54px);
+  -moz-transform: translateX(73px) translateY(54px);
+  -ms-transform: translateX(73px) translateY(54px);
+  -o-transform: translateX(73px) translateY(54px);
   height: calc(100vh - 54px);
-  width: calc(100% - 72px);
+  width: calc(100% - 73px);
   transition: .1s;
   -webkit-transition: .1s;
   -moz-transition: .1s;
