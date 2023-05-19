@@ -2,7 +2,7 @@ let searchInput = document.getElementById("input-search")
 let searchdiv = document.querySelector(".search")
 let NotfiacationActive = '<svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" class="style-scope yt-icon" style="pointer-events: none; display: block;"><g class="style-scope yt-icon"><path d="M10,20h4c0,1.1-0.9,2-2,2S10,21.1,10,20z M20,17.35V19H4v-1.65l2-1.88v-5.15c0-2.92,1.56-5.22,4-5.98V3.96	c0-1.42,1.49-2.5,2.99-1.76C13.64,2.52,14,3.23,14,3.96l0,0.39c2.44,0.75,4,3.06,4,5.98v5.15L20,17.35z" class="style-scope yt-icon"></path></g></svg>'
 let Notfiacationidle = '<svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" class="style-scope yt-icon" style="pointer-events: none; display: block;"><g class="style-scope yt-icon"><path d="M10,20h4c0,1.1-0.9,2-2,2S10,21.1,10,20z M20,17.35V19H4v-1.65l2-1.88v-5.15c0-2.92,1.56-5.22,4-5.98V3.96 c0-1.42,1.49-2.5,2.99-1.76C13.64,2.52,14,3.23,14,3.96l0,0.39c2.44,0.75,4,3.06,4,5.98v5.15L20,17.35z M19,17.77l-2-1.88v-5.47 c0-2.47-1.19-4.36-3.13-5.1c-1.26-0.53-2.64-0.5-3.84,0.03C8.15,6.11,7,7.99,7,10.42v5.47l-2,1.88V18h14V17.77z" class="style-scope yt-icon"></path></g></svg>'
-let topCheck = 0
+let NotificationsValue = 0
 
 function refresh() {
   if (window.innerWidth == 520 || window.innerWidth == 680) {
@@ -73,6 +73,14 @@ accPic.addEventListener('mouseleave', () => {
 })
 
 accPic.addEventListener('click', () => {
+  if(NotificationsValue == 0) {
+    SettingsPcOpen()
+  } else if (NotificationsValue == 1) {
+    NotficitionClose()
+    SettingsPcOpen()
+    NotificationsValue = 0
+  }})
+function SettingsPcOpen() {
   if (window.innerWidth > 520) {
     accContainer.style.display = 'block'
     accPic.style.border = '1px solid #3ea6ff'
@@ -81,19 +89,23 @@ accPic.addEventListener('click', () => {
       accContainer.style.opacity = '1'
       accSettings.style.right = '80px'
     }, 100);
+    document.body.style.overflow = 'hidden'
   }
-})
-
+}
 let SettingsPcValue = 0
 accSettings.onclick = function () {
   SettingsPcValue = 1
 }
 accContainer.addEventListener('click', () => {
+  SettingsPcClose()
+})
+function SettingsPcClose() {
   setTimeout(() => {
     if (window.innerWidth > 520 && SettingsPcValue == 0) {
       accContainer.style.opacity = '0'
       accPic.style.border = '0px solid #3ea6ff'
       accSettings.style.right = '0px'
+      document.body.style.overflow = 'auto'
       setTimeout(() => {
         accContainer.style.display = 'none'
       }, 300);
@@ -102,8 +114,7 @@ accContainer.addEventListener('click', () => {
   setTimeout(() => {
     SettingsPcValue = 0
   }, 20);
-})
-
+}
 accPic.addEventListener('click', () => {
   SettingsOpen()
 })
@@ -120,6 +131,7 @@ function SettingsOpen() {
       accSettings.style.top = '0'
     }, 10);
   }
+  document.body.style.overflow = 'hidden'
 }
 function SettingsClose() {
   if (window.innerWidth <= 520) {
@@ -129,61 +141,64 @@ function SettingsClose() {
     setTimeout(() => {
       accContainer.style.display = 'none'
     }, 300);
+    document.body.style.overflow = 'auto'
   }
 }
 let OpenNotifications = document.querySelector('nav .third .notifications')
 let NotificationsSection = document.querySelector('.open-notifications ')
-let NotificationsValue = 0
 
 OpenNotifications.addEventListener('click', () => {
-  NotficitionClose()
+  if(NotificationsValue == 0) {
+  NotficitionOpen()
+  NotificationsValue = 1
+  } else if(NotificationsValue == 1) {
+  NotficitionClose() 
+  NotificationsValue = 0
+  }
+
 })
 
-function NotficitionClose() {
+function NotficitionOpen() {
   if (window.innerWidth > 680) {
-    if (NotificationsValue == 0) {
-      NotificationsSection.style.display = 'flex'
-      setTimeout(() => {
-      NotificationsSection.style.right = '125px'
-      NotificationsSection.style.display = 'flex'
+    NotificationsSection.style.display = 'flex'
+    setTimeout(() => {
+    NotificationsSection.style.right = '125px'
+    NotificationsSection.style.display = 'flex'
+    NotificationsSection.style.opacity = '1'
+    OpenNotifications.innerHTML = NotfiacationActive
+    }, 10);
+  }  else if (window.innerWidth < 680) {
+    NotificationsSection.style.right = '0px'
+    OpenNotifications.innerHTML = NotfiacationActive
+    NotificationsSection.style.display = 'flex'
+    setTimeout(() => {
+      NotificationsSection.style.top = '54px'
       NotificationsSection.style.opacity = '1'
-      NotificationsValue = 1
-      OpenNotifications.innerHTML = NotfiacationActive
-      }, 10);
-
-    } else if (NotificationsValue == 1 && window.innerWidth > 680) {
-      NotificationsSection.style.right = '-490px'
-      NotificationsSection.style.opacity = '0'
-      NotificationsValue = 0
-      OpenNotifications.innerHTML = Notfiacationidle
-      setTimeout(() => {
-        NotificationsSection.style.display = 'none'
-      }, 300);
-    }
+    }, 10);
+    document.body.style.overflow = 'hidden'
   }
+
+}
+
+function NotficitionClose() {
   if (window.innerWidth < 680) {
-    if (NotificationsValue == 0) {
-      NotificationsSection.style.right = '0px'
-      OpenNotifications.innerHTML = NotfiacationActive
-      NotificationsSection.style.display = 'flex'
-      setTimeout(() => {
-        NotificationsSection.style.top = '54px'
-        NotificationsSection.style.opacity = '1'
-        NotificationsValue = 1
-      }, 10);
-      document.body.style.overflow = 'hidden'
-    } else if (NotificationsValue == 1) {
-      OpenNotifications.innerHTML = Notfiacationidle
-      NotificationsSection.style.top = '1000px'
-      NotificationsSection.style.right = '0'
-      NotificationsValue = 0
-      NotificationsSection.style.opacity = '0'
-      NotificationsSection.style.right = '0'
-      setTimeout(() => {
-        NotificationsSection.style.display = 'none'
-      }, 300);
-      document.body.style.overflow = 'auto'
-    }
+    OpenNotifications.innerHTML = Notfiacationidle
+    NotificationsSection.style.top = '1000px'
+    NotificationsSection.style.right = '0'
+    NotificationsSection.style.opacity = '0'
+    NotificationsSection.style.right = '0'
+    setTimeout(() => {
+    NotificationsSection.style.display = 'none'
+    }, 100);
+    document.body.style.overflow = 'auto'
+  }
+  if (window.innerWidth > 680) {
+    NotificationsSection.style.right = '-490px'
+    NotificationsSection.style.opacity = '0'
+    OpenNotifications.innerHTML = Notfiacationidle
+    setTimeout(() => {
+      NotificationsSection.style.display = 'none'
+    }, 300);
   }
 }
 
@@ -200,12 +215,24 @@ MobileSearchBar.addEventListener('click', () => {
 })
 MobileSearchIcon.addEventListener('click', () => {
   if (window.innerWidth <= 520) {
-    MobileSearchContainer.style.display = 'flex'
-    setTimeout(() => {
-      MobileSearchBar.style.top = '0'
-      MobileSearchInput.focus()
-    }, 10);
+    if(NotificationsValue == 0) {
+      MobileSearchContainer.style.display = 'flex'
+      setTimeout(() => {
+        MobileSearchBar.style.top = '0'
+        MobileSearchInput.focus()
+      }, 10);
+    } else if (NotificationsValue = 1) {
+    NotficitionClose()
+    NotificationsValue = 0
+    if (window.innerWidth <= 520) {
+      MobileSearchContainer.style.display = 'flex'
+      setTimeout(() => {
+        MobileSearchBar.style.top = '0'
+        MobileSearchInput.focus()
+      }, 10);
+    }
   }
+  } 
 })
 MobileSearchBack.addEventListener('click', () => {
   MobileSearchBar.style.top = '-54px'
