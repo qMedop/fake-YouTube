@@ -167,13 +167,14 @@ function NotficitionClose() {
       OpenNotifications.innerHTML = NotfiacationActive
       NotificationsSection.style.display = 'flex'
       setTimeout(() => {
-        NotificationsSection.style.bottom = '-54px'
+        NotificationsSection.style.top = '54px'
         NotificationsSection.style.opacity = '1'
         NotificationsValue = 1
       }, 10);
+      document.body.style.overflow = 'hidden'
     } else if (NotificationsValue == 1) {
       OpenNotifications.innerHTML = Notfiacationidle
-      NotificationsSection.style.bottom = '-800px'
+      NotificationsSection.style.top = '1000px'
       NotificationsSection.style.right = '0'
       NotificationsValue = 0
       NotificationsSection.style.opacity = '0'
@@ -181,6 +182,7 @@ function NotficitionClose() {
       setTimeout(() => {
         NotificationsSection.style.display = 'none'
       }, 300);
+      document.body.style.overflow = 'auto'
     }
   }
 }
