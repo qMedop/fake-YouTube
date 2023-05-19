@@ -142,21 +142,28 @@ OpenNotifications.addEventListener('click', () => {
 function NotficitionClose() {
   if (window.innerWidth > 680) {
     if (NotificationsValue == 0) {
+      NotificationsSection.style.display = 'flex'
+      setTimeout(() => {
       NotificationsSection.style.right = '125px'
       NotificationsSection.style.display = 'flex'
       NotificationsSection.style.opacity = '1'
       NotificationsValue = 1
       OpenNotifications.innerHTML = NotfiacationActive
+      }, 10);
+
     } else if (NotificationsValue == 1 && window.innerWidth > 680) {
       NotificationsSection.style.right = '-490px'
-      NotificationsSection.style.display = 'flex'
-      NotificationsSection.style.opacity = '1'
+      NotificationsSection.style.opacity = '0'
       NotificationsValue = 0
       OpenNotifications.innerHTML = Notfiacationidle
+      setTimeout(() => {
+        NotificationsSection.style.display = 'none'
+      }, 300);
     }
   }
   if (window.innerWidth < 680) {
     if (NotificationsValue == 0) {
+      NotificationsSection.style.right = '0px'
       OpenNotifications.innerHTML = NotfiacationActive
       NotificationsSection.style.display = 'flex'
       setTimeout(() => {
@@ -169,11 +176,11 @@ function NotficitionClose() {
       NotificationsSection.style.bottom = '-800px'
       NotificationsSection.style.right = '0'
       NotificationsValue = 0
+      NotificationsSection.style.opacity = '0'
+      NotificationsSection.style.right = '0'
       setTimeout(() => {
         NotificationsSection.style.display = 'none'
-        NotificationsSection.style.opacity = '0'
-        NotificationsSection.style.right = '0'
-      }, 200);
+      }, 300);
     }
   }
 }
