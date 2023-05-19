@@ -1046,11 +1046,10 @@ nav .account {
 @media (max-width: 680px) {
   .open-notifications {
     right: 0;
-    bottom: -600px;
-    height: 100vh;
+    top: 1000px;
+    height: calc(100vh - 54px);
     width: 100%;
     border-radius: 0;
-    top: unset;
     display: none;
     max-height: 100vh;
     opacity: 0;
