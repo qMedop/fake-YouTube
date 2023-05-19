@@ -151,31 +151,29 @@ MobileSearchContainer.addEventListener('click', () => {
 })
 
 let optionOpen = document.querySelector('.Options')
-let RightNav = document.querySelector('.right-nav .left')
+let RightNav = document.querySelector('.right-nav-open')
 let landing = document.querySelector('.landing')
-let optionsValue = 0
+let optionClose = document.querySelector('.right-nav-open .Options')
+
+
+// function check() {
+//   if(window.innerWidth <= 520) {
+//     landing.style.transform = 'translateX(0px) translateY(54px)'
+//     landing.style.width = '100% '
+//     optionsValue = 1
+//     RightNav.style.left = '0px'
+//   } else if (window.innerWidth >= 520) {
+//     RightNav.style.left = '-72px'
+//   }
+// }
+
+// window.onresize = check
 
 optionOpen.addEventListener('click', () => {
-  if(optionsValue == 0) {
-    RightNav.style.left = '-72px'
-    optionsValue = 1
-    landing.style.transform = 'translateX(0px) translateY(54px)'
-    landing.style.width = '100%'
-  } else {
-    RightNav.style.left = '0'
-    landing.style.transform = 'translateX(72px) translateY(54px)'
-    landing.style.width = 'calc(100% - 72px)'
-    optionsValue = 0
-  }
+    RightNav.style.left = '0px'
+})
+optionClose.addEventListener('click', () => {
+  RightNav.style.left = '-240px'
 })
 
 
-function mobilebarchech() {
-  if(window.innerWidth <= 520) {
-  let tryr = document.documentElement.clientHeight - 52
-  RightNav.style.top = `${tryr}px`
-  console.log('object');
-  }
-}
-window.onresize = mobilebarchech
-window.onscroll = mobilebarchech
