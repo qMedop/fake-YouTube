@@ -1211,6 +1211,7 @@ nav .account {
   width: 50%;
   display: flex;
   align-items: center;
+  max-width: 400px;
 }
 .landing-shorts-page .content h1 {
   margin-top: 200px;
@@ -1358,7 +1359,7 @@ nav .account {
     height: calc(100% - 98px);
     object-fit: cover;
     position: relative;
-    top: -2px;
+    top: -9px;
   }
   .landing-shorts-page .vids .jon {
     object-fit: contain;
