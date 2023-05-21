@@ -2,7 +2,6 @@ let searchInput = document.getElementById("input-search")
 let searchdiv = document.querySelector(".search")
 let NotfiacationActive = '<svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" class="style-scope yt-icon" style="pointer-events: none; display: block;"><g class="style-scope yt-icon"><path d="M10,20h4c0,1.1-0.9,2-2,2S10,21.1,10,20z M20,17.35V19H4v-1.65l2-1.88v-5.15c0-2.92,1.56-5.22,4-5.98V3.96	c0-1.42,1.49-2.5,2.99-1.76C13.64,2.52,14,3.23,14,3.96l0,0.39c2.44,0.75,4,3.06,4,5.98v5.15L20,17.35z" class="style-scope yt-icon"></path></g></svg>'
 let Notfiacationidle = '<svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" class="style-scope yt-icon" style="pointer-events: none; display: block;"><g class="style-scope yt-icon"><path d="M10,20h4c0,1.1-0.9,2-2,2S10,21.1,10,20z M20,17.35V19H4v-1.65l2-1.88v-5.15c0-2.92,1.56-5.22,4-5.98V3.96 c0-1.42,1.49-2.5,2.99-1.76C13.64,2.52,14,3.23,14,3.96l0,0.39c2.44,0.75,4,3.06,4,5.98v5.15L20,17.35z M19,17.77l-2-1.88v-5.47 c0-2.47-1.19-4.36-3.13-5.1c-1.26-0.53-2.64-0.5-3.84,0.03C8.15,6.11,7,7.99,7,10.42v5.47l-2,1.88V18h14V17.77z" class="style-scope yt-icon"></path></g></svg>'
-let NotificationsValue = 0
 
 let Home = document.querySelector('nav .first .logo')
 let HomeBar = document.querySelector('.right-nav-mobile .left .home')
@@ -28,40 +27,7 @@ searchInput.addEventListener('focusout', () => {
   searchdiv.style.border = "1px solid #272727"
 })
 
-let sugg = document.querySelector(".sugg")
-let previous = document.querySelector(".back")
-let next = document.querySelector(".next")
-let test = 0
 
-
-next.addEventListener('click', () => {
-  sugg.scrollBy(
-    {
-      left: 2000,
-      behavior: "smooth"
-    }
-  )
-  previous.style.display = 'flex'
-  next.style.display = 'none'
-  if (window.innerWidth <= 520) {
-    previous.style.display = 'none'
-    next.style.display = 'none'
-  }
-})
-previous.addEventListener('click', () => {
-  sugg.scrollBy(
-    {
-      left: -2000,
-      behavior: "smooth"
-    }
-  )
-  previous.style.display = 'none'
-  next.style.display = 'flex'
-  if (window.innerWidth <= 520) {
-    previous.style.display = 'none'
-    next.style.display = 'none'
-  }
-})
 
 let accPiccontainer = document.querySelector("nav .account")
 let accPic = document.querySelector("nav .login img")
@@ -82,13 +48,8 @@ accPic.addEventListener('mouseleave', () => {
 })
 
 accPic.addEventListener('click', () => {
-  if(NotificationsValue == 0) {
     SettingsPcOpen()
-  } else if (NotificationsValue == 1) {
-    NotficitionClose()
-    SettingsPcOpen()
-    NotificationsValue = 0
-  }})
+})
 function SettingsPcOpen() {
   if (window.innerWidth > 520) {
     accContainer.style.display = 'block'
@@ -110,7 +71,6 @@ accContainer.addEventListener('click', (e) => {
   }
 })
 function SettingsPcClose(e) {
-
     if (window.innerWidth > 520 ) {
       accContainer.style.opacity = '0'
       accPic.style.border = '0px solid #3ea6ff'
@@ -138,7 +98,6 @@ function SettingsOpen() {
       accSettings.style.top = '0'
     }, 10);
   }
-  document.body.style.overflow = 'hidden'
 }
 function SettingsClose() {
   if (window.innerWidth <= 520) {
@@ -148,26 +107,19 @@ function SettingsClose() {
     setTimeout(() => {
       accContainer.style.display = 'none'
     }, 300);
-    document.body.style.overflow = 'auto'
   }
 }
 let OpenNotifications = document.querySelector('nav .third .notifications')
 let NotificationsSection = document.querySelector('.open-notifications ')
-
+let notificationsContainer = document.querySelector('.notfications-container')
 OpenNotifications.addEventListener('click', () => {
-  if(NotificationsValue == 0) {
   NotficitionOpen()
-  NotificationsValue = 1
-  } else if(NotificationsValue == 1) {
-  NotficitionClose() 
-  NotificationsValue = 0
-  }
-
 })
 
 function NotficitionOpen() {
   if (window.innerWidth > 680) {
     NotificationsSection.style.display = 'flex'
+    notificationsContainer.style.display = 'flex'
     setTimeout(() => {
     NotificationsSection.style.right = '125px'
     NotificationsSection.style.display = 'flex'
@@ -178,11 +130,12 @@ function NotficitionOpen() {
     NotificationsSection.style.right = '0px'
     OpenNotifications.innerHTML = NotfiacationActive
     NotificationsSection.style.display = 'flex'
+    notificationsContainer.style.display = 'flex'
     setTimeout(() => {
       NotificationsSection.style.top = '54px'
       NotificationsSection.style.opacity = '1'
     }, 10);
-    document.body.style.overflow = 'hidden'
+    landing.style.overflow = 'hidden'
   }
 
 }
@@ -196,8 +149,9 @@ function NotficitionClose() {
     NotificationsSection.style.right = '0'
     setTimeout(() => {
     NotificationsSection.style.display = 'none'
+    notificationsContainer.style.display = 'none'
     }, 100);
-    document.body.style.overflow = 'auto'
+    landing.style.overflow = 'auto'
   }
   if (window.innerWidth > 680) {
     NotificationsSection.style.right = '-490px'
@@ -205,10 +159,15 @@ function NotficitionClose() {
     OpenNotifications.innerHTML = Notfiacationidle
     setTimeout(() => {
       NotificationsSection.style.display = 'none'
+      notificationsContainer.style.display = 'none'
     }, 300);
   }
 }
-
+notificationsContainer.addEventListener('click', (e) => {
+  if(e.target === notificationsContainer) {
+    NotficitionClose() 
+  }
+})
 let MobileSearchContainer = document.querySelector('.m-search-container')
 let MobileSearchIcon = document.getElementById('Search')
 let MobileSearchBar = document.querySelector('.m-search')
@@ -222,15 +181,11 @@ MobileSearchBar.addEventListener('click', () => {
 })
 MobileSearchIcon.addEventListener('click', () => {
   if (window.innerWidth <= 520) {
-    if(NotificationsValue == 0) {
       MobileSearchContainer.style.display = 'flex'
       setTimeout(() => {
         MobileSearchBar.style.top = '0'
         MobileSearchInput.focus()
       }, 10);
-    } else if (NotificationsValue = 1) {
-    NotficitionClose()
-    NotificationsValue = 0
     if (window.innerWidth <= 520) {
       MobileSearchContainer.style.display = 'flex'
       setTimeout(() => {
@@ -238,7 +193,6 @@ MobileSearchIcon.addEventListener('click', () => {
         MobileSearchInput.focus()
       }, 10);
     }
-  }
   } 
 })
 MobileSearchBack.addEventListener('click', () => {
@@ -291,11 +245,123 @@ MobileSearchIcon.addEventListener('click' , () => {
   searchPc()
 })
 
+SearchPcInput.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+      if(SearchPcInput.value.length == 0) {
+        SearchPcInput.focus()
+        console.log('Noob');
+      } else if (SearchPcInput.value.length >= 1) {
+        location.replace('search.html')
+      }
+  }
+})
 
 function searchPc() {
 if(SearchPcInput.value.length == 0) {
+  SearchPcInput.focus()
   console.log('Noob');
 } else if (SearchPcInput.value.length >= 1) {
   location.replace('search.html')
 }
 }
+
+let  HomePc = document.querySelectorAll('.left .home')
+let  ShortsPc = document.querySelectorAll('.left .shorts')
+let  SubsPc = document.querySelectorAll('.left .subs')
+let  libraryPc = document.querySelectorAll('.left .library')
+let  downloadsPc = document.querySelectorAll('.left .downloads')
+
+HomePc[0].addEventListener('click' , () => {
+  if (HomePc[0].getAttribute('id') == 'active') {
+  } else {
+    window.location.assign('index.html')
+  }
+})
+ShortsPc[0].addEventListener('click' , () => {
+  if (ShortsPc[0].getAttribute('id') == 'active') {
+  } else {
+    window.location.assign('shorts.html')
+  }
+})
+SubsPc[0].addEventListener('click' , () => {
+  if (SubsPc[0].getAttribute('id') == 'active') {
+  } else {
+    window.location.assign('subscriptions.html')
+  }
+})
+libraryPc[0].addEventListener('click' , () => {
+  if (libraryPc[0].getAttribute('id') == 'active') {
+  } else {
+    window.location.assign('library.html')
+  }
+})
+downloadsPc[0].addEventListener('click' , () => {
+  if (downloadsPc[0].getAttribute('id') == 'active') {
+  } else {
+    window.location.assign('downloads.html')
+  }
+})
+
+HomePc[1].addEventListener('click' , () => {
+  if (HomePc[1].getAttribute('id') == 'active') {
+  } else {
+    window.location.assign('index.html')
+  }
+})
+ShortsPc[1].addEventListener('click' , () => {
+  if (ShortsPc[1].getAttribute('id') == 'active') {
+  } else {
+    window.location.assign('shorts.html')
+  }
+})
+SubsPc[1].addEventListener('click' , () => {
+  if (SubsPc[1].getAttribute('id') == 'active') {
+  } else {
+    window.location.assign('subscriptions.html')
+  }
+})
+libraryPc[1].addEventListener('click' , () => {
+  if (libraryPc[1].getAttribute('id') == 'active') {
+  } else {
+    window.location.assign('library.html')
+  }
+})
+downloadsPc[1].addEventListener('click' , () => {
+  if (downloadsPc[1].getAttribute('id') == 'active') {
+  } else {
+    window.location.assign('downloads.html')
+  }
+})
+
+HomePc[2].addEventListener('click' , () => {
+  if (HomePc[2].getAttribute('id') == 'active') {
+  } else {
+    window.location.assign('index.html')
+  }
+})
+ShortsPc[2].addEventListener('click' , () => {
+  if (ShortsPc[2].getAttribute('id') == 'active') {
+  } else {
+    window.location.assign('shorts.html')
+  }
+})
+SubsPc[2].addEventListener('click' , () => {
+  if (SubsPc[2].getAttribute('id') == 'active') {
+  } else {
+    window.location.assign('subscriptions.html')
+  }
+})
+libraryPc[2].addEventListener('click' , () => {
+  if (libraryPc[2].getAttribute('id') == 'active') {
+  } else {
+    window.location.assign('library.html')
+  }
+})
+downloadsPc[2].addEventListener('click' , () => {
+  if (downloadsPc[2].getAttribute('id') == 'active') {
+  } else {
+    window.location.assign('downloads.html')
+  }
+})
+
+
