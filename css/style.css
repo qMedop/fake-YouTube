@@ -1359,7 +1359,7 @@ nav .account {
     height: calc(100% - 98px);
     object-fit: cover;
     position: relative;
-    top: -9px;
+    top: -20px;
   }
   .landing-shorts-page .vids .jon {
     object-fit: contain;
