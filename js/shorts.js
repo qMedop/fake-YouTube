@@ -37,8 +37,7 @@ for(i=0;i <= videos.length - 1;i++){
 
 const Option = {
   root: null,
-  threshold: 1,
-  
+  threshold: 0.8,
 }
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(el => {
