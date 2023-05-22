@@ -1369,7 +1369,6 @@ nav .account {
   scroll-snap-type: y mandatory;
   overflow: auto;
   height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
 }
 .vids-container::-webkit-scrollbar {
   display: none;
