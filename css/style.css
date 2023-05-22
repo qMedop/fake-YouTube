@@ -1191,37 +1191,7 @@ nav .account {
     font-size: 18px;
   }
 }
-.landing-shorts-page {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  width: calc(100% - 73px);
-  height: auto;
-  min-height: auto;
-  align-items: center;
-  transform: translateX(74px) translateY(0px);
-  -webkit-transform: translateX(74px) translateY(0px);
-  -moz-transform: translateX(74px) translateY(0px);
-  -ms-transform: translateX(74px) translateY(0px);
-  -o-transform: translateX(74px) translateY(0px);
-}
-.landing-shorts-page .vids {
-  position: relative;
-  height: 100vh;
-  width: 50%;
-  display: flex;
-  align-items: center;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-}
-.landing-shorts-page .content h1 {
-  margin-top: 200px;
-  color: #f1f1f1;
-  font-family: 'Roboto';
-  font-size: 22px;
-  font-weight: 400;
-}
-.landing-shorts-page .vids video{
+.vids video{
   width: 100%;
   height: calc(100% - 98px);
   object-fit: cover;
@@ -1275,7 +1245,7 @@ nav .account {
     -ms-transform: rotate(90deg);
     -o-transform: rotate(90deg);
 }
-  .landing-shorts-page span{
+.vids-container span{
     position: absolute;
     top: 54px;
     left: 0;
@@ -1291,7 +1261,7 @@ nav .account {
     align-items: center;
     justify-content: center;
   }
-  .landing-shorts-page span svg {
+  .vids-container span svg {
     width: 0px;
     height: 0px;
     transition: 0.2s;
@@ -1342,36 +1312,28 @@ nav .account {
     width: 18px;
     height: 18px;
   }
-  .landing-shorts-page  {
-    height: calc(100% - 44px);
-    transform: translateX(0) translateY(0px);
-    -webkit-transform: translateX(0) translateY(0px);
-    -moz-transform: translateX(0) translateY(0px);
-    -ms-transform: translateX(0) translateY(0px);
-    -o-transform: translateX(0) translateY(0px);
-    width: 100%;
-}
-  .landing-shorts-page .vids{
+.vids{
     height: 100vh;
     width: 100%;
     background-color: black;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    position: relative;
   }
-  .landing-shorts-page .vids video{
+.vids video{
     width: 100%;
     height: 100%;
     object-fit: contain;
     position: relative;
     top: 0px;
   }
-  .landing-shorts-page .vids .jon {
+.vids .jon {
     object-fit: contain;
   }
-  .landing-shorts-page .vids .spec{
+.vids .spec{
     object-fit: cover;
   }
-  .landing-shorts-page .vids:last-child {
-    margin-bottom: 44px;
-  }
+
   .Play-Pause {
     position: fixed;
     left: 50%;
@@ -1393,7 +1355,7 @@ nav .account {
     -ms-transition: .2s;
     -o-transition: .2s;
 }
-.landing-shorts-page span{
+.vids-container span{
   height: calc(100% - 20px);
   top: 0;
   }
@@ -1401,9 +1363,9 @@ nav .account {
 
 .vids-container{
   width: 100%;
-  height: 100vh;
   scroll-snap-type: y mandatory;
   overflow: auto;
+  height: 100vh;
 }
 .vids-container::-webkit-scrollbar {
   display: none;
