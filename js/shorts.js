@@ -44,15 +44,9 @@ const Option = {
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(el => {
     if (el.isIntersecting == true) {
-      if(el.target.getAttribute('id') == 0){
-        el.target.pause()
-        videoStatue = 1
-        autoPlay()
-      } else {
         el.target.play()
         videoStatue = 0
         autoPlay()
-      }
     } else {
       el.target.pause()
       el.target.currentTime = 0
