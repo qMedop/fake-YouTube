@@ -37,7 +37,9 @@ for(i=0;i <= videos.length - 1;i++){
 
 const Option = {
   root: null,
-  threshold: 0.8,
+  threshold: 1,
+  rootmargin: '100px'
+  
 }
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(el => {
@@ -132,3 +134,11 @@ function playreveal() {
     svgPlay.style.display = 'none'
   }, 310);
 }
+document.body.onscroll = () => {
+  document.body.scrollBy(0,643)
+  console.log(1);
+}
+// First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+let vh = window.innerHeight * 0.01;
+// Then we set the value in the --vh custom property to the root of the document
+document.documentElement.style.setProperty('--vh', `${vh}px`);
