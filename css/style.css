@@ -1452,7 +1452,7 @@ opacity: 0;
 }
 .channel {
   position: absolute;
-  top: calc(100vh - 160px);
+  top: calc(100vh - 120px);
   display: flex;
   flex-direction: column;
   left: 12px;
