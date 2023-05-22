@@ -1313,7 +1313,7 @@ nav .account {
     height: 18px;
   }
 .vids{
-    height: 100%;
+    height: 100vh;
     width: 100%;
     background-color: black;
     scroll-snap-align: start;
@@ -1369,6 +1369,7 @@ nav .account {
   scroll-snap-type: y mandatory;
   overflow: auto;
   height: 100vh;
+   height: calc(var(--vh, 1vh) * 100);
 }
 .vids-container::-webkit-scrollbar {
   display: none;
