@@ -1434,7 +1434,7 @@ opacity: 0;
   flex-direction: column;
   right: 10px;
   z-index: 1011;
-  top: calc(100vh - -150px);  
+   top: calc(100vh - 400px);
 }
 .ineract div {
   width: 48px;
