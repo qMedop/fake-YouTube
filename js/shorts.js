@@ -16,20 +16,20 @@ let yy = 0
 window.onload = updateTime
 
 let videoStatue = 0
-for(i=0;i <= span.length - 1;i++){
-  span[i].setAttribute('id',`${i}`)
-  span[i].addEventListener('click', (e) => {
-    if(videoStatue == 0) {
-      videos[e.target.getAttribute('id')].pause()
-      videoStatue = 1
-      pausereveal()
-    } else {
-      videos[e.target.getAttribute('id')].play()
-      videoStatue = 0
-      playreveal()
-    }
-    })
-}
+// for(i=0;i <= span.length - 1;i++){
+//   span[i].setAttribute('id',`${i}`)
+//   span[i].addEventListener('click', (e) => {
+//     if(videoStatue == 0) {
+//       videos[e.target.getAttribute('id')].pause()
+//       videoStatue = 1
+//       pausereveal()
+//     } else {
+//       videos[e.target.getAttribute('id')].play()
+//       videoStatue = 0
+//       playreveal()
+//     }
+//     })
+// }
 
 for(i=0;i <= videos.length - 1;i++){
   videos[i].setAttribute('id',`${i}`)
@@ -64,6 +64,23 @@ const observer = new IntersectionObserver((entries) => {
     yy = el.target.getAttribute('id')
   })
 },Option)
+
+vidsContainer.addEventListener('click', (e) => {
+  let clicked = e.target
+  if(e.target.toString() == "[object HTMLVideoElement]") {
+      if(videoStatue == 0) {
+    e.target.pause()
+    videoStatue = 1
+    pausereveal()
+  } else if(videoStatue == 1) {
+    e.target.play()
+    videoStatue = 0
+    playreveal()
+  }
+  }
+})
+
+
 
 videos.forEach(video => {
   observer.observe(video)
