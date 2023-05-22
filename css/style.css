@@ -1149,7 +1149,35 @@ nav .account {
   font-family: 'Roboto';
   margin-top: 10px;
 }
+.vids-container{
+  width: calc(100% - 73px);
+  scroll-snap-type: y mandatory;
+  overflow: auto;
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100 - 54px);
+  transform: translate(73px,54px);
+  -webkit-transform: translate(73px,54px);
+  -moz-transform: translate(73px,54px);
+  -ms-transform: translate(73px,54px);
+  -o-transform: translate(73px,54px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 @media (max-width: 620px) {
+  .vids-container{
+    width: 100%;
+    scroll-snap-type: y mandatory;
+    overflow: auto;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+    transform: translate(0px,0px);
+    -webkit-transform: translate(0px,0px);
+    -moz-transform: translate(0px,0px);
+    -ms-transform: translate(0px,0px);
+    -o-transform: translate(0px,0px);
+    display: block;
+}
   .search-landing .content svg {
     width: 240px;
     height: 200px;
@@ -1260,6 +1288,7 @@ nav .account {
     display: flex;
     align-items: center;
     justify-content: center;
+    display: none;
   }
   .vids-container span svg {
     width: 0px;
@@ -1298,6 +1327,7 @@ nav .account {
     display: flex;
     align-items: center;
     justify-content: center;
+    display: none;
   }
   .Play-Pause span svg {
     width: 60px;
@@ -1307,15 +1337,42 @@ nav .account {
   .Play-Pause .play{
     display: none;
   }
+  .vids{
+    height: calc(100vh - 54px);
+    width: 100%;
+    background-color: #0f0f0f;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .vids video{
+    width: 100%;
+    height: calc(100vh - 54px);
+    object-fit: cover;
+    position: relative;
+    top: 0px;
+  }
 @media (max-width: 520px) {
   .right-nav-mobile svg{
     width: 18px;
     height: 18px;
   }
+  .shorts-nav .third {
+    display: none;
+  }
+  .shorts-nav .first svg #rectangle{
+    fill: #fff;
+  }
+  .shorts-nav .first svg #triangle {
+    display: none;
+  }
 .vids{
     height: 100vh;
     width: 100%;
-    background-color: black;
+    background-color: #0f0f0f;
     scroll-snap-align: start;
     scroll-snap-stop: always;
     position: relative;
@@ -1361,16 +1418,10 @@ nav .account {
 .vids-container span{
   height: calc(100% - 20px);
   top: 0;
+  display: none;
   }
 }
 
-.vids-container{
-  width: 100%;
-  scroll-snap-type: y mandatory;
-  overflow: auto;
-  height: 100vh;
-   height: calc(var(--vh, 1vh) * 100);
-}
 .vids-container::-webkit-scrollbar {
   display: none;
 }
@@ -1420,22 +1471,14 @@ opacity: 0;
   background-color: transparent;
   border: none;
 }
-.shorts-nav .third {
-  display: none;
-}
-.shorts-nav .first svg #rectangle{
-  fill: #fff;
-}
-.shorts-nav .first svg #triangle {
-  display: none;
-}
 .ineract {
   position: absolute;
   display: flex;
   flex-direction: column;
   right: 10px;
   z-index: 1011;
-  top: calc(100vh - 360px);}
+  bottom: 10px;
+}
 .ineract div {
   width: 48px;
   height: 48px;
