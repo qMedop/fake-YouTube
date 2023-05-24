@@ -17,8 +17,8 @@ window.onload = updateTime
 window.onload = customize
 window.onresize = customize
 function customize() {
-let width = window.innerWidth
-let height = window.innerHeight
+let width = document.documentElement.clientWidth
+let height = document.documentElement.clientHeight
 vidsContainer.style.height = `${height}px`
 vidsContainer.style.width = `${width}px`
 }
