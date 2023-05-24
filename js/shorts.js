@@ -14,16 +14,6 @@ const seek = document.querySelectorAll('#seek');
 let yy = 0
 
 window.onload = updateTime
-window.onload = customize
-window.onresize = customize
-function customize() {
-let width = document.documentElement.clientWidth
-let height = document.documentElement.clientHeight
-vidsContainer.style.height = `${height}px`
-vidsContainer.style.width = `${width}px`
-}
-
-
 
 let videoStatue = 0
 // for(i=0;i <= span.length - 1;i++){
@@ -159,3 +149,7 @@ document.body.onscroll = () => {
   document.body.scrollBy(0,643)
   console.log(1);
 }
+// First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+let vh = window.innerHeight * 0.01;
+// Then we set the value in the --vh custom property to the root of the document
+document.documentElement.style.setProperty('--vh', `${vh}px`);
