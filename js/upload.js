@@ -194,6 +194,7 @@ function openCloseUpload(e) {
     document.body.classList.add("lock-scrollbar");
   }
   uploadCont.classList.add("active");
+  videoUploadLInk.value = "User/Videos/Wide Nanami Walking.mp4"
   uploadCont.addEventListener("click", (e) => {
     if (e.target.getAttribute("id") === "UploadContClose") {
       uploadCont.classList.remove("active");
