@@ -2242,9 +2242,9 @@ body.mobile .first .Options,
 body.mobile .landing .next{
   display: none;
 } 
-body.mobile .third .add{
+/* body.mobile .third .add{
   display: none;
-} 
+}  */
 body.mobile .videosCont{
   padding: 0;
   
