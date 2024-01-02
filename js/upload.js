@@ -1,6 +1,8 @@
 let channelImg = "imgs/kaska.jpg";
 let channelName = "qMedop";
 //upload
+let videoOptions = document.querySelectorAll('.videosCont .video .info .options-container')
+
 let uploadBtn = document.querySelector("nav .third #addBtn");
 let videoUploadLInk = document.querySelector(
   ".UploadCont .createVideo #videoUploadLink"
@@ -24,10 +26,12 @@ let descripionI = document.querySelector(
 let thumbnailI = document.querySelector(
   ".UploadCont .createVideo .center .right .input #thumbnailI"
 );
+let UploadBtnMobile = document.querySelector('.upload-btn-mobile')
 let createVideo = document.querySelector(".UploadCont .createVideo");
 let vidoSRC;
 let previewduration;
 let close = document.querySelector(".UploadCont .createVideo .closeUpload");
+let videosContt = document.querySelector('.floating-video .videosCont')
 let uploadCont = document.querySelector(".UploadCont");
 const videosCont = document.querySelector(".landing .videosCont");
 const videoHTML = function videof(
@@ -182,11 +186,17 @@ function getFromLocalStorage() {
     duartionA = JSON.parse(window.localStorage.getItem("duartionA"));
     descripionA = JSON.parse(window.localStorage.getItem("descripionA"));
     timeUploadedA = JSON.parse(window.localStorage.getItem("timeUploadedA"));
-    appendVideos();
+    appendVideos(videosArray);
   }
 }
 getFromLocalStorage();
 uploadBtn.addEventListener("click", openCloseUpload);
+if (
+  navigator.userAgent.match(/Android/i) ||
+  navigator.userAgent.match(/iPhone/i)
+) {
+  UploadBtnMobile.addEventListener("click", openCloseUpload);
+}
 
 function openCloseUpload(e) {
   if (document.fullscreenElement == null && document.body.offsetHeight > window.innerHeight) {
@@ -236,49 +246,82 @@ videoUploadNext.addEventListener("click", (e) => {
     });
   }
 });
-function appendVideos() {
+downloadFromLocalStorage()
+appendVideoss(videosArray)
+function appendVideoss(array) {
   for (let i = 0; i < videoA.length; i++) {
     let video = document.createElement("div");
     video.classList.add(`video`);
     video.setAttribute("id", `video${i}`);
     video.setAttribute("tabindex", `0`);
     video.innerHTML = videoHTML(
-      thumbnailA[i],
-      videoA[i],
-      duartionA[i],
+      array[i].thumbnail,
+      array[i].src,
+      array[i].duration,
       channelImg,
-      headderA[i],
+      array[i].name,
       channelName,
-      timeSince(timeUploadedA[i])
+      timeSince(array[i].date)
     );
-    videosCont.appendChild(video);
+    videosContt.appendChild(video);
   }
+}
+function appendVideos(array) {
+  for (let i = 0; i < array.length; i++) {
+    // if(array[i].name.toLowerCase().includes('attack')) {
+      let video = document.createElement("div");
+      video.classList.add(`video`);
+      video.setAttribute("id", `video${i}`);
+      video.setAttribute("tabindex", `0`);
+      video.innerHTML = videoHTML(
+        array[i].thumbnail,
+        array[i].src,
+        array[i].duration,
+        channelImg,
+        array[i].name,
+        channelName,
+        timeSince(array[i].date)
+      );
+      videosCont.appendChild(video);
+    }
+  // }
 }
 let videos = document.querySelectorAll(".landing .videosCont .video");
 let muteAll = document.querySelectorAll(".video .thumbnail .mute .unmute");
 pushBtn.addEventListener("click", (e) => {
   if (titleI.value.length === 0) {
   } else {
-    headderA.push(titleI.value);
-    videoA.push(vidoSRC);
-    thumbnailA.push(thumbnailI.value);
-    descripionA.push(descripionI.value);
-    duartionA.push(FormatTime(previewduration));
-    timeUploadedA.push(Date.now());
     uploadCont.classList.remove("active");
     document.body.classList.remove("lock-scrollbar");
     createVideo.classList.remove("active");
-    window.localStorage.setItem("videoA", JSON.stringify(videoA));
-    window.localStorage.setItem("thumbnailA", JSON.stringify(thumbnailA));
-    window.localStorage.setItem("headderA", JSON.stringify(headderA));
-    window.localStorage.setItem("duartionA", JSON.stringify(duartionA));
-    window.localStorage.setItem("descripionA", JSON.stringify(descripionA));
-    window.localStorage.setItem("timeUploadedA", JSON.stringify(timeUploadedA));
+    uploadVideo()
     videosCont.innerHTML = "";
-    appendVideos();
-    videos = document.querySelectorAll(".landing .videosCont .video");
-    muteAll = document.querySelectorAll(".video .thumbnail .mute .unmute");
-    videoHover();
-    muteAllF();
+    appendVideos(videosArray)
+    location.reload()
   }
 });
+
+function uploadVideo() {
+  const video = {
+    name: titleI.value,
+    src: vidoSRC,
+    descripion: descripionI.value,
+    duration: FormatTime(previewduration),
+    date: Date.now(),
+    thumbnail:thumbnailI.value,
+    views: 0,
+    likes: 0,
+    dislike: false,
+  }
+  videosArray.push(video)
+  uploadToLocalStorage(videosArray)
+}
+
+function uploadToLocalStorage(videosArray) {
+  window.localStorage.setItem('videos', JSON.stringify(videosArray))
+}
+
+function downloadFromLocalStorage() {
+  videosArray = JSON.parse(window.localStorage.getItem('videos'))
+  appendVideos(videosArray)
+}
