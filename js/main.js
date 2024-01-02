@@ -1231,6 +1231,94 @@ const upload = `                      <div class="createVideo">
   </div>
 </div>
 </div>`;
+const bottomBarMobile = `        <div class="mobile-bottom-bar-holder">
+<div class="home">
+  <button id="homeBtnMobile">
+    <svg
+      viewBox="0 0 24 24"
+      preserveAspectRatio="xMidYMid meet"
+      focusable="false"
+      class="style-scope yt-icon"
+      style="pointer-events: none; display: block"
+    >
+      <g class="style-scope yt-icon">
+        <path
+          d="M4,10V21h6V15h4v6h6V10L12,3Z"
+          class="style-scope yt-icon"
+        ></path>
+      </g>
+    </svg>
+    <span>Home</span>
+  </button>
+</div>
+<div class="shorts">
+  <button id="shortsBtnMobile">
+    <svg
+      viewBox="0 0 24 24"
+      preserveAspectRatio="xMidYMid meet"
+      focusable="false"
+      class="style-scope yt-icon"
+      style="pointer-events: none; display: block"
+    >
+      <g
+        height="24"
+        viewBox="0 0 24 24"
+        width="24"
+        class="style-scope yt-icon"
+      >
+        <path
+          d="M10 14.65v-5.3L15 12l-5 2.65zm7.77-4.33c-.77-.32-1.2-.5-1.2-.5L18 9.06c1.84-.96 2.53-3.23 1.56-5.06s-3.24-2.53-5.07-1.56L6 6.94c-1.29.68-2.07 2.04-2 3.49.07 1.42.93 2.67 2.22 3.25.03.01 1.2.5 1.2.5L6 14.93c-1.83.97-2.53 3.24-1.56 5.07.97 1.83 3.24 2.53 5.07 1.56l8.5-4.5c1.29-.68 2.06-2.04 1.99-3.49-.07-1.42-.94-2.68-2.23-3.25zm-.23 5.86l-8.5 4.5c-1.34.71-3.01.2-3.72-1.14-.71-1.34-.2-3.01 1.14-3.72l2.04-1.08v-1.21l-.69-.28-1.11-.46c-.99-.41-1.65-1.35-1.7-2.41-.05-1.06.52-2.06 1.46-2.56l8.5-4.5c1.34-.71 3.01-.2 3.72 1.14.71 1.34.2 3.01-1.14 3.72L15.5 9.26v1.21l1.8.74c.99.41 1.65 1.35 1.7 2.41.05 1.06-.52 2.06-1.46 2.56z"
+          class="style-scope yt-icon"
+        ></path>
+      </g>
+    </svg>
+    <span>Shorts</span>
+  </button>
+</div>
+<div class="upload-button">
+  <button class="upload-btn-mobile" id="UploadBtnMobile">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="24"
+      viewBox="0 0 24 24"
+      width="24"
+    >
+      <path
+        d="M17 13h-4v4h-2v-4H7v-2h4V7h2v4h4v2zM12 3c-4.96 0-9 4.04-9
+    9s4.04 9 9 9 9-4.04 9-9-4.04-9-9-9m0-1c5.52 0 10 4.48 10 10s-4.48
+    10-10 10S2 17.52 2 12 6.48 2 12 2z"
+      ></path>
+    </svg>
+  </button>
+</div>
+<div class="subs">
+  <button id="subsBtnMobile">
+    <svg
+      viewBox="0 0 24 24"
+      preserveAspectRatio="xMidYMid meet"
+      focusable="false"
+      class="style-scope yt-icon"
+      style="pointer-events: none; display: block"
+    >
+      <g class="style-scope yt-icon">
+        <path
+          d="M10,18v-6l5,3L10,18z M17,3H7v1h10V3z M20,6H4v1h16V6z M22,9H2v12h20V9z M3,10h18v10H3V10z"
+          class="style-scope yt-icon"
+        ></path>
+      </g>
+    </svg>
+    <span>Subscriptions</span>
+  </button>
+</div>
+<div class="you">
+  <button id="loginBtnMobile">
+    <img src="imgs/kaska.jpg" alt="" />
+    <span>You</span>
+  </button>
+</div>
+</div>`
+let webPage = document.querySelector('.web-page')
+
 let nav = document.createElement("nav");
 nav.innerHTML = topBarPc;
 
@@ -1258,8 +1346,12 @@ let uploadDiv = document.createElement("div");
 uploadDiv.classList.add("UploadCont");
 uploadDiv.setAttribute("id", "UploadContClose");
 uploadDiv.innerHTML = upload;
-document.body.appendChild(uploadDiv);
+webPage.appendChild(uploadDiv);
 
+let bottomBarMobileDiv = document.createElement("div");
+
+bottomBarMobileDiv.classList.add('mobile-bottom-bar')
+bottomBarMobileDiv.innerHTML = bottomBarMobile
 //loading the data depending on page and device
 
 document.onload = LoadData();
@@ -1280,19 +1372,23 @@ if (
 } else {
 }
 function LoadData(e) {
-  // if (
-  //   navigator.userAgent.match(/Android/i) ||
-  //   navigator.userAgent.match(/iPhone/i)
-  // ) {
-  // } else {
-  if (location.href.search("watch") === -1) {
-    document.body.prepend(rightDiv);
+  if (
+    navigator.userAgent.match(/Android/i) ||
+    navigator.userAgent.match(/iPhone/i)
+  ) {
+    webPage.appendChild(bottomBarMobileDiv)
   }
-  document.body.prepend(nav);
+  // } else {
+    if (location.href.search("watch") === -1) {
+      webPage.prepend(rightDiv);
+    }
+  webPage.prepend(nav);
   // }
 }
 
 //ff
+let bodyPosition
+
 const leadingZeroFormatter = new Intl.NumberFormat(undefined, {
   minimumIntegerDigits: 2,
 });
@@ -1334,8 +1430,17 @@ function FormatTime(time) {
     )}:${leadingZeroFormatter.format(s)}`;
   }
 }
-
-
+function lockBody() {
+  if (document.fullscreenElement == null && document.body.offsetHeight > window.innerHeight) {
+    bodyPosition = window.scrollY
+    document.body.style.top = `-${bodyPosition}px`
+    document.body.classList.add("lock-scrollbar");
+  }
+}
+function unLockBody(e) {
+  document.body.classList.remove("lock-scrollbar");
+  window.scrollTo(0,bodyPosition)
+}
 // buttons blur
 function buttonsBlur() {
   for (let i = 0; i < document.querySelectorAll("button").length; i++) {
@@ -1350,21 +1455,25 @@ function buttonsBlur() {
           document.querySelectorAll("button")[i].blur();
       });
   }
-  for (let i = 0; i < document.querySelectorAll("div").length; i++) {
-    document.querySelectorAll("div")[i].addEventListener("click", () => {
-        document.querySelectorAll("div")[i].blur();
-    });
-  }
-  for (let i = 0; i < document.querySelectorAll("div").length; i++) {
-    document
-      .querySelectorAll("div")
-      [i].addEventListener("mouseleave", () => {
-        setTimeout(() => {
-          document.querySelectorAll("div")[i].blur();
-        }, 100);
-      });
-  }
+  // for (let i = 0; i < document.querySelectorAll("div").length; i++) {
+  //   document.querySelectorAll("div")[i].addEventListener("click", () => {
+  //       document.querySelectorAll("div")[i].blur();
+  //   });
+  // }
+  // for (let i = 0; i < document.querySelectorAll("div").length; i++) {
+  //   document
+  //     .querySelectorAll("div")
+  //     [i].addEventListener("mouseleave", () => {
+  //       setTimeout(() => {
+  //         document.querySelectorAll("div")[i].blur();
+  //       }, 100);
+  //     });
+  // }
 }
+document.addEventListener("DOMContentLoaded", function() {
+  buttonsBlur()
+});
+
 searchSubmitBtn.addEventListener("mouseleave", () => {
   setTimeout(() => {
     searchSubmitBtn.blur();
@@ -1372,7 +1481,14 @@ searchSubmitBtn.addEventListener("mouseleave", () => {
 });
 let accPic = document.querySelector("nav .login img");
 let accContainerValue = 0;
-
+let videosArray = []
+if  (!window.localStorage.getItem('videos')) {
+  window.localStorage.setItem('videos', JSON.stringify(videosArray))
+  console.log('object');
+}
+if(!window.localStorage.getItem('ambientMode')) {
+    window.localStorage.setItem('ambientMode', 'false')
+}
 //right nav open
 let options = document.querySelector('.first .Options')
 options.appendChild(rightNavOpenDiv);
@@ -1382,7 +1498,6 @@ let rightNavOpenI = document.querySelector(".right-nav-open");
 let rightNavOpenS = false;
 let move = false
 let moveTimeOut 
-let bodyPosition
 optionsButton.addEventListener("click", NavBarOpen);
 navBarBackGround.addEventListener('click' ,NavBarClose)
 closeRightNav.addEventListener('click' ,NavBarClose)
@@ -1412,9 +1527,9 @@ document.addEventListener('mouseup' , (e) => {
   }
 })
 document.addEventListener('mousemove' , (e) => {
-  if (move === true && e.offsetX <= rightNavOpenI.clientWidth) {
-    rightNavOpenI.style.left = e.offsetX - rightNavOpenI.clientWidth  + 'px'
-    navBarBackGround.style.opacity = e.offsetX / rightNavOpenI.clientWidth
+  if (move === true) {
+    rightNavOpenI.style.left = Math.min( e.offsetX - rightNavOpenI.clientWidth,0) + 'px'
+    navBarBackGround.style.opacity = Math.min( e.offsetX / rightNavOpenI.clientWidth,1)
   };
 })
 function NavBarOpen() {
@@ -1508,7 +1623,6 @@ function openCloseNotficition() {
     bodyPosition = window.scrollY
     notificationsS = 1;
     document.body.appendChild(notficationsDiv);
-    buttonsBlur();
     notficationsDiv.addEventListener('wheel', (e) => {
       if(e.target.className === notficationsDiv.className) e.preventDefault()
     })
@@ -1546,6 +1660,8 @@ function openCloseNotficition() {
 }
 
 //account
+document.querySelector('.third .login')
+// document.body.appendChild(accountDiv);
 
 loginBtn.addEventListener("click", () => {
   openCloseAccount();
@@ -1559,7 +1675,6 @@ function openCloseAccount() {
     accountDiv.addEventListener('wheel', (e) => {
       if(e.target.className === accountDiv.className) e.preventDefault()
     })
-    buttonsBlur();
     if (document.fullscreenElement == null && document.body.offsetHeight > window.innerHeight) {
       document.body.style.top = `-${bodyPosition}px`
       document.body.classList.add("lock-scrollbar");
@@ -1588,7 +1703,6 @@ searchBtn.addEventListener("click", mSearchF);
 function mSearchF() {
   if (window.innerWidth <= 520) {
     document.body.appendChild(mSearchDiv);
-    buttonsBlur();
     let mSearchContiner = document.querySelector(".m-search-container");
     let closeSearchBtn = document.querySelector(".m-search-container .m-back");
     closeSearchBtn.addEventListener("click", mSearchCloseF);
@@ -1683,20 +1797,20 @@ function previewTimeLine(e) {
   goingUplaod.textContent = FormatTime(cuurenttime)
 }
 
-uploadPreviewVid.addEventListener('loadeddata', () => {
-  const percent = uploadPreviewVid.currentTime / uploadPreviewVid.duration;
-  timeLineContaienrUpload.style.setProperty("--progress-position", percent);
-  uploadPreviewVid.addEventListener('timeupdate', () => {
-    if(!uploadPreviewVid.paused) {
-      let percent = ((uploadPreviewVid.buffered.end(uploadPreviewVid.buffered.length - 1) / uploadPreviewVid.duration )* 100)
-      timeLineContaienrUpload.style.setProperty("--buffered-position", percent);
-    }
-  })
-})
-uploadPreviewVid.addEventListener('timeupdate', () => {
-  const percent = uploadPreviewVid.currentTime / uploadPreviewVid.duration;
-  timeLineContaienrUpload.style.setProperty("--progress-position", percent);
-})
+// uploadPreviewVid.addEventListener('loadeddata', () => {
+//   const percent = uploadPreviewVid.currentTime / uploadPreviewVid.duration;
+//   timeLineContaienrUpload.style.setProperty("--progress-position", percent);
+//   uploadPreviewVid.addEventListener('timeupdate', () => {
+//     if(!uploadPreviewVid.paused) {
+//       let percent = ((uploadPreviewVid.buffered.end(uploadPreviewVid.buffered.length - 1) / uploadPreviewVid.duration )* 100)
+//       timeLineContaienrUpload.style.setProperty("--buffered-position", percent);
+//     }
+//   })
+// })
+// uploadPreviewVid.addEventListener('timeupdate', () => {
+//   const percent = uploadPreviewVid.currentTime / uploadPreviewVid.duration;
+//   timeLineContaienrUpload.style.setProperty("--progress-position", percent);
+// })
 
 uploadPreviewVidCont.addEventListener('click' , (e) => {
   if (e.target.toString() === '[object HTMLVideoElement]') {
@@ -1710,3 +1824,34 @@ function playPause() {
     uploadPreviewVid.pause();
   }
 }
+
+for(let i = 0; i < document.querySelectorAll('#shortsBtn').length ;i++) {
+  document.querySelectorAll('#shortsBtn')[i].addEventListener('click', (e) => {
+    window.location.href = 'shorts.html'
+  })
+} 
+// document.addEventListener('pointerdown', (e) => {
+//   console.log('down');
+// })
+// document.addEventListener('pointermove', (e) => {
+//   console.log('move');
+// })
+// document.addEventListener('pointerup', (e) => {
+//   console.log('up');
+// })
+// document.addEventListener('pointercancel', (e) => {
+//   console.log('cancel');
+// })
+// document.addEventListener('pointerenter', (e) => {
+//   console.log('enter');
+// })
+// document.addEventListener('pointerover', (e) => {
+//   console.log('over');
+// })
+// document.addEventListener('pointerout', (e) => {
+//   console.log('out');
+// })
+// document.addEventListener('pointerleave', (e) => {
+//   console.log('leave');
+// })
+
