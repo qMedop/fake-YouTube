@@ -2,6 +2,10 @@
 let sugg = document.querySelector(".sugg");
 let previous = document.querySelector(".back");
 let next = document.querySelector(".next");
+const floatingWindow = document.querySelector('.floating-video')
+const mainVideoHolder= document.querySelector('.mainVideo')
+const miniPlayerControlls= document.querySelector('.floating-conrolls')
+const mobileBottomBar = document.querySelector('.mobile-bottom-bar')
 let test = 0;
 
 next.addEventListener("click", () => {
@@ -77,7 +81,6 @@ for (let i = 0; i < suggButton.length; i++) {
   });
 }
 
-const videoOptions = document.querySelectorAll('.videosCont .video .info .options-container')
 let optionsStatue = false
 for (let i = 0; i < videoOptions.length; i++) {
   videoOptions[i].addEventListener('click', () => {
@@ -220,7 +223,6 @@ let TimeLineContaienr = document.querySelector(
   ".videosCont .video .thumbnail .timeline-container .timeline-holder"
 );
 function clcikk(e, i) {}
-buttonsBlur();
 videoHover();
 muteAllF();
 for (let i = 0; i < videos.length; i++) {
@@ -233,10 +235,39 @@ for (let i = 0; i < videos.length; i++) {
     videos[i].addEventListener('click', (e) => {
       if(check === true) {
       window.localStorage.setItem('videowatch' , video.getAttribute("id"))
-      location.href = "watch.html";
+      if (
+        navigator.userAgent.match(/Android/i) ||
+        navigator.userAgent.match(/iPhone/i)
+        ) {
+        if(miniPlayerrBtn) closeMiniPlayer()
+        openFloaringWatching()
+    } else {
+      window.location.href = 'watch.html'
+      }
       }
     })
   })
+}
+
+function openFloaringWatching() {
+  floatingWindow.style.height = window.innerHeight + 'px'
+  floatingWindow.style.display = 'block'
+  let watchVid = localStorage.getItem('videowatch').slice(5)
+
+  let videoW = JSON.parse(window.localStorage.getItem("videoA"));
+  let thumbnailW = JSON.parse(window.localStorage.getItem("thumbnailA"));
+  let headderW = JSON.parse(window.localStorage.getItem("headderA"));
+  let duartionW = JSON.parse(window.localStorage.getItem("duartionA"));
+  let descripionW = JSON.parse(window.localStorage.getItem("descripionA"));
+  let timeUploadedW = JSON.parse(window.localStorage.getItem("timeUploadedA"));
+  mainVideo.src = videoW[watchVid]
+  console.log(previewVideo);
+  previewVideo.src = videoW[watchVid]
+  mainImg.src = thumbnailW[watchVid]
+  videoTittle.textContent = headderW[watchVid]
+  document.body.classList.add('floating')
+  lockBody()
+  previewimgSize()
 }
 
 const videosAll = document.querySelectorAll('.landing .videosCont .video video')
@@ -266,3 +297,235 @@ for(let i = 0; i < menuDelete.length; i++) {
     console.log(headderA[menuDelete[i].getAttribute('video')]);
   })
 }
+
+
+
+
+
+if (
+  navigator.userAgent.match(/Android/i) ||
+  navigator.userAgent.match(/iPhone/i)
+) {
+
+  floatingWindow.style.height = window.innerHeight + 'px'
+  let initialY = null;
+  let isSwiping = false;
+  let miniPlayerStatue = false
+  let changer
+  let flotaingIH = floatingWindow.clientHeight;
+  let mainVideoIH = mainVideoHolder.clientHeight
+  let mainVideoIW = mainVideoHolder.clientWidth
+  let windowHeight = (window.innerHeight - (58 + 46))
+  window.addEventListener('resize', miniPlayerResizer)
+  mainVideoHolder.addEventListener('touchstart', touchStartFloating);
+  mainVideoHolder.addEventListener('touchmove', touchMoveFloating);
+  mainVideoHolder.addEventListener('touchend', touchEndFlotaing);
+  
+  mainVideoHolder.addEventListener('touchstart', (e) => {
+    if(!miniPlayerStatue) touchStartFloating(e)
+  });
+  mainVideoHolder.addEventListener('touchmove', (e) => {
+    if(!miniPlayerStatue) touchMoveFloating(e)
+  });
+  mainVideoHolder.addEventListener('touchend', (e) => {
+    if(!miniPlayerStatue) touchEndFlotaing(e)
+  });
+  
+  
+  
+  
+  floatingWindow.addEventListener('touchstart', (e) => {
+    if(miniPlayerStatue) touchStartFloating(e)
+  });
+  floatingWindow.addEventListener('touchmove', (e) => {
+    if(miniPlayerStatue) touchMoveFloating(e)
+  });
+  floatingWindow.addEventListener('touchend', (e) => {
+    if(miniPlayerStatue) touchEndFlotaing(e)
+  });
+  
+  floatingWindow.addEventListener('click', (e) => {
+    console.log('object');  
+  });
+  function miniPlayerResizer(e) {
+    if(!miniPlayerStatue) {
+      flotaingIH = window.innerHeight;
+      mainVideoIH = mainVideoHolder.clientHeight
+      mainVideoIW = mainVideoHolder.clientWidth
+      mainVideoHolder.style.height = null
+      mainVideoIH = mainVideoHolder.clientHeight
+      mainVideoHolder.style.height = mainVideoIH + 'px'
+      floatingWindow.style.height = window.innerHeight + 'px'
+    }
+  }
+  
+  function touchStartFloating(e) {
+    initialY = e.touches[0].clientY;
+    flotaingH = floatingWindow.clientHeight;
+    mainVideoH = mainVideoHolder.clientHeight
+    mainVideoW = mainVideoHolder.clientWidth
+    flotaingIH = window.innerHeight;
+    e.preventDefault()
+  
+  }
+  
+  function touchMoveFloating(e) {
+    if (initialY === null) {
+      return;
+    }
+    const currentY = e.touches[0].clientY;
+    if (!miniPlayerStatue) {
+      const deltaY = currentY - initialY;
+      let value = Math.min(Math.max(deltaY,0),window.innerHeight / 2)
+      changer = value / (window.innerHeight / 2)
+      if (deltaY > 5) {
+    document.body.classList.add('swiping')
+        isSwiping = true;
+        floatingWindow.style.height = `${Math.min(Math.max(flotaingH - changer * flotaingH,58),flotaingH)}px`;
+        mainVideoHolder.style.height = `${Math.min(Math.max(100 - ( changer) * 100,0),100)}%`
+        miniPlayerControlls.style.width = `${Math.max(Math.min((changer - .75)  * 1100 ,200),0)}%`
+        mobileBottomBar.style.bottom = `${Math.max(Math.min( -46 +  changer * 46,0),-46)}px`
+        floatingWindow.style.top = `${Math.max(Math.min( changer * (window.innerHeight - (58 + 46)) ,(window.innerHeight - (58 + 46))),0)}px`
+        document.querySelector('.Wright').style.opacity = `${Math.min(Math.max(1 - changer - 0.3, 0),1)}`;
+        e.preventDefault()
+      }
+    } else  if (miniPlayerStatue) {
+        const deltaY = initialY - currentY;
+        let value = Math.min(Math.max(deltaY,0),window.innerHeight)
+        changer = value / window.innerHeight
+        if (deltaY > -5) {
+          document.body.classList.add('swiping')
+          isSwiping = true;
+          floatingWindow.style.height = `${Math.min(Math.max(changer * flotaingIH,flotaingH),flotaingIH)}px`;
+          mainVideoHolder.style.height = `${Math.min(Math.max(changer * 100,0),100)}%`
+          miniPlayerControlls.style.width = `${Math.max(Math.min(200 - (changer) * 2000,200),0)}%`
+          mobileBottomBar.style.bottom = `${Math.max(Math.min( changer * -46 ,0),-46)}px `
+          floatingWindow.style.top = `${Math.max(Math.min( (window.innerHeight - (58 + 46)) - changer * (window.innerHeight - (58 + 46)) ,(window.innerHeight - (58 + 46))),0)}px `
+          document.querySelector('.Wright').style.opacity = `${Math.min(Math.max(changer - 0.3, 0),1)}`;
+        e.preventDefault()
+      } 
+    }
+  }
+  
+  function touchEndFlotaing() {
+      document.body.classList.remove('swiping')
+      // floatingWindow.style.bottom = `46px`
+      // floatingWindow.style.top = 'auto'
+      if (isSwiping) {
+      isSwiping = false;
+      initialY = null;
+      document.querySelector('.Wright').style.opacity = null;
+      floatingWindow.style.height = null
+      miniPlayerControlls.style.width = null
+      mobileBottomBar.style.bottom = null
+      // floatingWindow.style.bottom = null
+      if (!miniPlayerStatue) {
+        if(changer >= 0.5) {
+          openMiniPlayer()
+        } else if (changer < 0.5) {
+          closeMiniPlayer()
+        }
+      } else if(miniPlayerStatue) {
+        if(changer >= 0.5) {
+          closeMiniPlayer()
+        } else if (changer < 0.5) {
+          openMiniPlayer()
+          }
+      }
+    }
+  }
+  
+  
+  function openMiniPlayer() {
+    document.body.classList.add('mini-palyer')
+    mainVideoHolder.style.height =`0%`
+    miniPlayerStatue = true
+    document.querySelector('.Wright').style.opacity = null;
+    floatingWindow.style.height = null
+    miniPlayerControlls.style.width = null
+    mobileBottomBar.style.bottom = null
+    // floatingWindow.style.bottom = null
+    floatingWindow.style.top = `${(window.innerHeight - (58 + 46))}px`
+    unLockBody()
+  
+  }
+  function closeMiniPlayer() {
+    document.body.classList.remove('mini-palyer')
+    mainVideoHolder.style.height =`100%`
+    floatingWindow.style.height = window.innerHeight + 'px'
+    miniPlayerStatue = false
+    document.querySelector('.Wright').style.opacity = null;
+    floatingWindow.style.height = null
+    miniPlayerControlls.style.width = null
+    mobileBottomBar.style.bottom = null
+    floatingWindow.style.top = '0px'
+    lockBody()
+  }
+  
+  let startPoint
+  let movingPoint
+  let swipeResult
+  let swipingStatue = false
+  function swipeStart(e) {
+    startPoint = e.touches[0].clientY;
+    swipingStatue = true
+    setTimeout(() => {
+      swipingStatue = false
+    }, 200);
+  }
+  function swipeUp(e) {
+  }
+  function swipeDown(e) {
+    movingPoint = e.touches[0].clientY
+    swipeResult = movingPoint - startPoint;
+  }
+  function swipeEnd(e) {
+    if(swipeResult > 100 && !miniPlayerStatue && swipingStatue) {
+      openMiniPlayer()
+      console.log('right');
+    } else if(swipeResult < -100 && miniPlayerStatue && swipingStatue) {
+      closeMiniPlayer()
+      console.log('left');
+    }
+  }
+  
+  floatingWindow.addEventListener('touchstart', swipeStart)
+  floatingWindow.addEventListener('touchmove', swipeDown)
+  floatingWindow.addEventListener('touchend', swipeEnd)
+  
+  
+  
+  
+  let previousHeight = window.innerHeight;
+  
+  function handleResize() {
+    windowHeight = (window.innerHeight - (58 + 46))
+    floatingWindow.style.top = `${windowHeight}px`
+  }
+  
+  function handleScroll() {
+    if (window.innerHeight !== previousHeight) {
+      handleResize();
+      previousHeight = window.innerHeight;
+    }
+  }
+  
+  function handleTransitionEnd() {
+      console.log('Transition ended!');
+      if(miniPlayerStatue) {
+        floatingWindow.style.bottom = '46px'
+        floatingWindow.style.top = 'auto'
+    }
+  }
+  
+  // Adding the event listener to the element
+  floatingWindow.addEventListener('transitionend', handleTransitionEnd);
+  
+  
+  // Listen for scroll and resize events
+  // window.addEventListener('scroll', handleScroll);
+  // window.addEventListener('resize', handleResize);
+  
+  
+}
+
