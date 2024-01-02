@@ -235,20 +235,11 @@ for (let i = 0; i < videos.length; i++) {
     videos[i].addEventListener('click', (e) => {
       if(check === true) {
       window.localStorage.setItem('videowatch' , video.getAttribute("id"))
-      if (
-        navigator.userAgent.match(/Android/i) ||
-        navigator.userAgent.match(/iPhone/i)
-        ) {
-        if(miniPlayerrBtn) closeMiniPlayer()
-        openFloaringWatching()
-    } else {
       window.location.href = 'watch.html'
-      }
       }
     })
   })
 }
-
 function openFloaringWatching() {
   floatingWindow.style.height = window.innerHeight + 'px'
   floatingWindow.style.display = 'block'
