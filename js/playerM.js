@@ -211,20 +211,20 @@ if (
 }
 
 //miniPlayer 
-miniPlayerrBtn.addEventListener('click' , toggleMiniPlayerMode)
-function toggleMiniPlayerMode() {
-  if (mainVideoContainer.classList.contains("mini-player")) {
-    document.exitPictureInPicture();
-  } else {
-    video.requestPictureInPicture();
-  }
-}
-video.addEventListener("enterpictureinpicture", () => {
-  mainVideoContainer.classList.add("mini-player");
-});
-video.addEventListener("leavepictureinpicture", () => {
-  mainVideoContainer.classList.remove("mini-player");
-});
+// miniPlayerrBtn.addEventListener('click' , toggleMiniPlayerMode)
+// function toggleMiniPlayerMode() {
+//   if (mainVideoContainer.classList.contains("mini-player")) {
+//     document.exitPictureInPicture();
+//   } else {
+//     video.requestPictureInPicture();
+//   }
+// }
+// video.addEventListener("enterpictureinpicture", () => {
+//   mainVideoContainer.classList.add("mini-player");
+// });
+// video.addEventListener("leavepictureinpicture", () => {
+//   mainVideoContainer.classList.remove("mini-player");
+// });
 
 //Time
 video.addEventListener('loadeddata', time)
@@ -302,18 +302,19 @@ function progress(e) {
     timeLineContaienr.style.setProperty("--thumb-position", percentTwo);
   currentTime.textContent = FormatTime(video.currentTime)
 }
-function previewTimeLine(e) {
+function previewTimeLine(e) { 
   var evt = typeof e.originalEvent === "undefined" ? e : e.originalEvent;
   var touch = evt.touches[0] || evt.changedTouches[0];
   x = touch.pageX;
   y = touch.pageY;
   const rect = timeLineContaienr.getBoundingClientRect();
   const percent = Math.min(Math.max(0, x - rect.x), rect.width) / rect.width;
-  const cuurenttime = percent * video.duration;
+  let lastValue = 0
+  const cuurenttime = Math.floor(percent * video.duration);
   let percentMax =
-    (rect.width - previewimgContainer.clientWidth / 2) / rect.width;
+  (rect.width - previewimgContainer.clientWidth / 2) / rect.width;
   let percentLow =
-    1 - (rect.width - previewimgContainer.clientWidth / 2) / rect.width;
+  1 - (rect.width - previewimgContainer.clientWidth / 2) / rect.width;
   let percentTwo = percent;
   if (percent > percentMax ) {
     percentTwo = percentMax ;
