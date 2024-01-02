@@ -2070,7 +2070,7 @@ body.mobile .landing{
   -moz-transform: translateX(0px) translateY(54px);
   -ms-transform: translateX(0px) translateY(54px);
   width: 100%;
-  
+  padding: 0;
 }
 body.mobile .videosCont{
   padding: 0;
