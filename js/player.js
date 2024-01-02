@@ -7,38 +7,37 @@ if (
   document.querySelector('.mainVideo .video-overlay .video-overlay-mobile').remove()
 }
 
-const video = document.querySelector('.videoCont #mainVideo')
-const previewVideo = document.querySelector('.videoCont #previewVideo')
-const landing = document.querySelector('body .landing')
-const videoCont = document.querySelector('.videoCont')
-const playPauseBtn = document.querySelector('.mainVideo .video-overlay .controlls .playPause')
-const fullScereneBtn = document.querySelector('.mainVideo .video-overlay .controlls .fullScreen')
-const autoPlayBtn = document.querySelector('.mainVideo .video-overlay .controlls .autoPlay')
-const theaterBtn = document.querySelector('.mainVideo .video-overlay .controlls .theaterMode')
-const miniPlayerrBtn = document.querySelector('.mainVideo .video-overlay .controlls .miniPlayer')
-const volumeBtn = document.querySelector('.mainVideo .video-overlay .controlls .volume')
-const currentTime = document.querySelector('.mainVideo .video-overlay .controlls .currentTime')
-const allTime = document.querySelector('.mainVideo .video-overlay .controlls .allTime')
-const timeLineContaienr = document.querySelector('.mainVideo .timeline-container .timeline-holder')
-const going = document.querySelector('.mainVideo .timeline-container #going')
-const previewimgContainer = document.querySelector('.mainVideo .timeline-container .timeline-holder .preview-img-container')
-const mainVideoContainer = document.querySelector('.mainVideo')
-const volumeContainer = document.querySelector('.mainVideo .video-overlay .controlls .volume-container')
-const videoControlls = document.querySelector('.mainVideo .video-overlay')
-const volumeChanger = document.querySelector('.mainVideo .video-overlay .controlls .volume-container .volume-changer .line')
-const volumeDiv = document.querySelector('.mainVideo .video-overlay .controlls .volume-container .volume-changer')
-const settingBtn = document.querySelector('.mainVideo .videoControlls .controlls .settings')
-const settingCont = document.querySelector('.mainVideo .videoControlls .settings-overlay')
-const annotationsBtn = document.querySelector('.mainVideo .videoControlls .settings-overlay .annotations')
-const ambientBtn = document.querySelector('.mainVideo .videoControlls .settings-overlay .ambient-mode')
-const annotationsSlider = document.querySelector('.mainVideo .videoControlls .settings-overlay .annotations .slider')
-const ambientSlider = document.querySelector('.mainVideo .videoControlls .settings-overlay .ambient-mode .slider')
-const playbackBtn = document.querySelector('.mainVideo .videoControlls .settings-overlay .playback-speed')
-const playbackPanel = document.querySelector('.mainVideo .videoControlls .settings-overlay .playback-panel')
-const settingsMain = document.querySelector('.mainVideo .videoControlls .settings-overlay .main')
-const playbackPanelContent = document.querySelector('.mainVideo .videoControlls .settings-overlay .playback-panel-content')
-const settingsMainContent = document.querySelector('.mainVideo .videoControlls .settings-overlay .main-content')
-
+let video = document.querySelector('#mainVideo')
+let previewVideo = document.querySelector('.mainVideo #previewVideo')
+let landing = document.querySelector('body .landing')
+let videoCont = document.querySelector('.videoCont')
+let playPauseBtn = document.querySelector('.mainVideo .video-overlay .controlls .playPause')
+let fullScereneBtn = document.querySelector('.mainVideo .video-overlay .controlls .fullScreen')
+let autoPlayBtn = document.querySelector('.mainVideo .video-overlay .controlls .autoPlay')
+let theaterBtn = document.querySelector('.mainVideo .video-overlay .controlls .theaterMode')
+let miniPlayerrBtn = document.querySelector('.mainVideo .video-overlay .controlls .miniPlayer')
+let volumeBtn = document.querySelector('.mainVideo .video-overlay .controlls .volume')
+let currentTime = document.querySelector('.mainVideo .video-overlay .controlls .currentTime')
+let allTime = document.querySelector('.mainVideo .video-overlay .controlls .allTime')
+let timeLineContaienr = document.querySelector('.mainVideo .timeline-container .timeline-holder')
+let going = document.querySelector('.mainVideo .timeline-container #going')
+let previewimgContainer = document.querySelector('.mainVideo .timeline-container .timeline-holder .preview-img-container')
+let mainVideoContainer = document.querySelector('.mainVideo')
+let volumeContainer = document.querySelector('.mainVideo .video-overlay .controlls .volume-container')
+let videoControlls = document.querySelector('.mainVideo .video-overlay')
+let volumeChanger = document.querySelector('.mainVideo .video-overlay .controlls .volume-container .volume-changer .line')
+let volumeDiv = document.querySelector('.mainVideo .video-overlay .controlls .volume-container .volume-changer')
+let settingBtn = document.querySelector('.mainVideo .videoControlls .controlls .settings')
+let settingCont = document.querySelector('.mainVideo .videoControlls .settings-overlay')
+let annotationsBtn = document.querySelector('.mainVideo .videoControlls .settings-overlay .annotations')
+let annotationsSlider = document.querySelector('.mainVideo .videoControlls .settings-overlay .annotations .slider')
+let playbackBtn = document.querySelector('.mainVideo .videoControlls .settings-overlay .playback-speed')
+let playbackPanel = document.querySelector('.mainVideo .videoControlls .settings-overlay .playback-panel')
+let settingsMain = document.querySelector('.mainVideo .videoControlls .settings-overlay .main')
+let playbackPanelContent = document.querySelector('.mainVideo .videoControlls .settings-overlay .playback-panel-content')
+let settingsMainContent = document.querySelector('.mainVideo .videoControlls .settings-overlay .main-content')
+const thumbIndicaro = document.querySelector('.mainVideo .timeline .thumb-indicaror')
+let loadingStatue = false
 let inputFocus = false
 for(let i = 0; i < document.querySelectorAll('input').length; i++) {
   document.querySelectorAll('input')[i].addEventListener('focusin' , () => {
@@ -132,24 +131,27 @@ if (
   })
 }
 function playPause() {
-  if (video.paused == true) {
-    video.play();
-    clearTimeout(playPauseTimeOut)
-    mainVideoContainer.classList.remove('pause')
-    mainVideoContainer.classList.add('play')
-    playPauseTimeOut = setTimeout(() => {
-      mainVideoContainer.classList.remove('play')
-    }, 1200);
-  } else {
-    clearTimeout(playPauseTimeOut)
-    mainVideoContainer.classList.remove('play')
-    mainVideoContainer.classList.add('pause')
-    playPauseTimeOut = setTimeout(() => {
+  if(!loadingStatue) {
+    if (video.paused == true) {
+      video.play();
+      clearTimeout(playPauseTimeOut)
       mainVideoContainer.classList.remove('pause')
-    }, 1200);
-    video.pause();
+      mainVideoContainer.classList.add('play')
+      playPauseTimeOut = setTimeout(() => {
+        mainVideoContainer.classList.remove('play')
+      }, 1200);
+  } else {
+      clearTimeout(playPauseTimeOut)
+      mainVideoContainer.classList.remove('play')
+      mainVideoContainer.classList.add('pause')
+      playPauseTimeOut = setTimeout(() => {
+        mainVideoContainer.classList.remove('pause')
+      }, 1200);
+      video.pause();
   }
   hideViewUI()
+    
+  }
 }
 
 video.addEventListener("pause", () => {
@@ -258,14 +260,16 @@ function timeupdate() {
 //proggersBar
 let wasPaused
 let scrrubing = false
-timeLineContaienr.addEventListener('click' , progress)
-timeLineContaienr.addEventListener('mousemove', previewTimeLine)
-timeLineContaienr.addEventListener('mousedown' , () => {
+timeLineContaienr.addEventListener('mouseenter' , previewimgSize)
+timeLineContaienr.addEventListener('pointerdown' , progress)
+timeLineContaienr.addEventListener('pointermove', previewTimeLine)
+timeLineContaienr.addEventListener('touchmove', previewTimeLineM)
+timeLineContaienr.addEventListener('pointerdown' , () => {
   scrrubing = true
   wasPaused = video.paused
   video.pause()
 })
-document.addEventListener('mouseup' , (e) => {
+document.addEventListener('pointerup' , (e) => {
   if(scrrubing) {
     e.preventDefault();
     scrrubing = false
@@ -273,21 +277,51 @@ document.addEventListener('mouseup' , (e) => {
     if(!wasPaused) video.play()
   }
 })
-timeLineContaienr.addEventListener('mousemove' , (e) => {
+timeLineContaienr.addEventListener('pointermove' , (e) => {
+  if (
+    navigator.userAgent.match(/Android/i) ||
+    navigator.userAgent.match(/iPhone/i)
+  ) {
+
+  } else {
+    if(scrrubing) {
+      mainVideoContainer.classList.add('scrubbing')
+      e.preventDefault();
+      progress(e)
+      previewTimeLine(e)
+    }
+  }
+})
+timeLineContaienr.addEventListener('touchmove' , (e) => {
   if(scrrubing) {
     mainVideoContainer.classList.add('scrubbing')
-    e.preventDefault();
-    progress(e)
-    previewTimeLine(e)
+    // e.preventDefault();
+    progressM(e)
+    previewTimeLineM(e)
   }
 })
-document.addEventListener('mousemove' , (e) => {
+document.addEventListener('pointermove' , (e) => {
+  if (
+    navigator.userAgent.match(/Android/i) ||
+    navigator.userAgent.match(/iPhone/i)
+  ) {
+
+  } else {
+    if(scrrubing) {
+      e.preventDefault();
+      progress(e)
+      previewTimeLine(e)
+    }
+  }
+})
+document.addEventListener('touchmove' , (e) => {
   if(scrrubing) {
-    e.preventDefault();
-    progress(e)
-    previewTimeLine(e)
+    // e.preventDefault();
+    progressM(e)
+    previewTimeLineM(e)
   }
 })
+
 
 function progress(e) {
   const rect = timeLineContaienr.getBoundingClientRect();
@@ -295,6 +329,29 @@ function progress(e) {
     Math.min(Math.max(0, e.x - rect.x), rect.width) / rect.width;
   video.currentTime = percent * video.duration;
   timeLineContaienr.style.setProperty("--progress-position", percent);
+  currentTime.textContent = FormatTime(video.currentTime)
+  console.log('object');
+}
+function progressM(e) {
+  var evt = typeof e.originalEvent === "undefined" ? e : e.originalEvent;
+  var touch = evt.touches[0] || evt.changedTouches[0];
+  x = touch.pageX;
+  y = touch.pageY;
+  const rect = timeLineContaienr.getBoundingClientRect();
+  const percent =
+    Math.min(Math.max(0, x - rect.x), rect.width) / rect.width;
+    videoCurrent = percent * video.duration
+  let percentMax =
+    (rect.width - thumbIndicaro.clientWidth / 2) / rect.width;
+  let percentLow =
+    1 - (rect.width - thumbIndicaro.clientWidth / 2) / rect.width;
+  let percentTwo = percent;
+  if (percent > percentMax ) {
+    percentTwo = percentMax ;
+  } else if (percent < percentLow) {
+    percentTwo = percentLow;
+  }
+    timeLineContaienr.style.setProperty("--thumb-position", percentTwo);
   currentTime.textContent = FormatTime(video.currentTime)
 }
 function previewTimeLine(e) {
@@ -316,7 +373,31 @@ function previewTimeLine(e) {
   going.textContent = FormatTime(cuurenttime)
   previewVideo.currentTime = cuurenttime
 }
+function previewTimeLineM(e) { 
+  var evt = typeof e.originalEvent === "undefined" ? e : e.originalEvent;
+  var touch = evt.touches[0] || evt.changedTouches[0];
+  x = touch.pageX;
+  y = touch.pageY;
+  const rect = timeLineContaienr.getBoundingClientRect();
+  const percent = Math.min(Math.max(0, x - rect.x), rect.width) / rect.width;
+  let lastValue = 0
+  const cuurenttime = Math.floor(percent * video.duration);
+  let percentMax =
+  (rect.width - previewimgContainer.clientWidth / 2) / rect.width;
+  let percentLow =
+  1 - (rect.width - previewimgContainer.clientWidth / 2) / rect.width;
+  let percentTwo = percent;
+  if (percent > percentMax ) {
+    percentTwo = percentMax ;
+  } else if (percent < percentLow) {
+    percentTwo = percentLow;
+  }
+  timeLineContaienr.style.setProperty("--preview-position-img", percentTwo);
+  timeLineContaienr.style.setProperty("--preview-position", percent);
 
+  going.textContent = FormatTime(cuurenttime)
+  previewVideo.currentTime = cuurenttime
+}
 //resize
 window.onresize = previewimgSize;
 previewimgSize();
@@ -324,6 +405,7 @@ function previewimgSize() {
   previewimgContainer.style.aspectRatio =  video.videoWidth / video.videoHeight
   previewimgContainer.style.height =  
   mainVideoContainer.clientHeight / 4.5 + "px";
+  console.log('object');
 }
 setTimeout(() => {
   previewimgContainer.style.aspectRatio =  video.videoWidth / video.videoHeight
@@ -340,6 +422,8 @@ video.addEventListener('loadeddata', () => {
     let percent = ((video.buffered.end(video.buffered.length - 1) / video.duration )* 100)
     timeLineContaienr.style.setProperty("--buffered-position", percent);
   })
+  console.log('done');
+  videoQuality.textContent = video.videoHeight + 'p'
 })
 
 if (
@@ -650,9 +734,6 @@ setTimeout(() => {
 
 settingBtn.addEventListener('click', OpenCloseSettings)
 
-ambientBtn.addEventListener('click', () => {
-  ambientSlider.classList.toggle('active')
-})
 annotationsBtn.addEventListener('click', () => {
   annotationsSlider.classList.toggle('active')
 })
@@ -743,3 +824,15 @@ InsaneBtn.addEventListener('click' , (e) => {
   playbackRateCheck(playbackBtns[8])
 })
 
+// buttonsBlur()
+
+//loading 
+
+video.onwaiting = (event) => {
+  document.body.classList.add("loading");
+  loadingStatue = true
+};
+video.onplaying = (event) => {
+  document.body.classList.remove("loading");
+  loadingStatue = false
+};
