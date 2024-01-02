@@ -3,12 +3,19 @@
   height: 100%;
 }
 .mainVideo .video-overlay button {
-  width: 54px;
-  height: 54px;
+  width: 48px;
+  height: 48px;
   cursor: pointer;
-  padding: 0 4px;
+  padding: 0 2px;
   opacity: .9;
   border: none;
+}
+body.fullScreen .mainVideo .video-overlay button {
+  width: 54px;
+  height: 54px;
+}
+.mainVideo .videoControlls .controlls .miniPlayer {
+  padding: 0 3px;
 }
 .mainVideo .video-overlay button:hover {
   opacity: 1;
@@ -19,8 +26,14 @@
 }
 .mainVideo .video-overlay button:active {
   outline: none;
-  background-color: transparent;
+  background-color: transparent !important;
   border: none;
+}
+@Media (max-width: 1400px) {
+  .mainVideo .video-overlay button {
+    width: 42px;
+    height: 42px;
+  }
 }
 @Media (max-width: 1400px) {
   .mainVideo .video-overlay button {
@@ -48,10 +61,11 @@
   background-color: black;
   /* min-width: 420px; */
   overflow: hidden;
-  border-radius: 16px;
+  border-radius: 12px;
 }
 .mainVideo .vidimg {
   position: relative;
+  height: 100%;
 }
 .mainVideo .vidimg .thumbnail {
   position: absolute;
@@ -66,6 +80,7 @@
   aspect-ratio: 16 / 9;
   position: absolute;
   filter: brightness(1);
+  height: 100%;
 }
 .mainVideo .videoControlls {
   position: absolute;
@@ -108,10 +123,12 @@
   background: linear-gradient(to top, #0f0f0fdb, transparent);
 }
 .mainVideo .video-overlay {
-  position: relative;
+  position: absolute;
   height: 100%;
   width: 100%;
   pointer-events: none;
+  top: 0;
+  left: 0;
 }
 .mainVideo .video-overlay div {
   pointer-events: initial;
@@ -364,10 +381,10 @@ body.fullScreen .landing {
   flex-direction: column;
   padding: 0;
   transform: translate(0,0);
+  display: block;
 }
 body.fullScreen .Wleft  {
   max-width: initial;
-  height: 100vh;
   width: 100%;
 }
 body.fullScreen .Wleft .videoCont,
@@ -375,6 +392,7 @@ body.fullScreen .Wleft .mainVideo,
 body.fullScreen .Wleft .mainVideo #mainVideo {
   height: 100vh !important;
   width: 100%;
+  border-radius: 0px;
 }
 body.fullScreen::-webkit-scrollbar {
   display: none;
@@ -390,7 +408,6 @@ body.fullScreen::-webkit-scrollbar {
   width: 100%;
   --progress-position: 0;
   height: 5px;
-  margin-bottom: 3px;
 }
 .mainVideo  .timeline-container .timeline {
   position: relative;
@@ -484,7 +501,7 @@ body.fullScreen::-webkit-scrollbar {
   pointer-events: none;
   color: #DDDDDD;
   font-family: 'Roboto';
-  font-size: 13px;
+  font-size: 16px;
   display: none;
   z-index: 1;
 }
@@ -724,13 +741,7 @@ body.mobile .mainVideo .video-overlay button:focus {
 body.mobile .mainVideo.view-UI .video-overlay button {
   pointer-events: all;
 }
-body.mobile .landing {
-  flex-direction: column;
-  transform: translateY(0);
-}
-body.mobile nav {
-  top: -54px;
-}
+
 body.mobile .mainVideo {
   overflow: initial;
 }
@@ -954,11 +965,12 @@ body.fullScreen .mainVideo.view-UI .video-overlay .video-overlay-mobile  .bottom
 body.fullScreen .mainVideo .video-overlay .video-overlay-mobile  .bottom-contrrols .upper {
   padding: 0 0 2px 0;
 }
-body.mobile .landing {
+body.mobile .floating .landing {
   padding: 0;
 }
 body.mobile .mainVideo {
   min-width: 100%;
+  width: 100%;
 }
 body.mobile .mainVideo .video-overlay .video-overlay-pc {
   display: none;
@@ -1177,3 +1189,74 @@ body.mobile .mainVideo.scrubbing .timeline-holder .timeline .thumb-indicaror {
     border: 4px solid #1e1e1e;
 }
 
+.mainVideo .video-overlay .video-overlay-pc .video-anim  .loading {
+  display: none;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0;
+  background-color: transparent;
+}
+
+.container {
+  --loading-size: 40px;
+  --loading-color: #f1f1f1;
+  --loading-speed: 2s;
+  --loading-bg-opacity: 0;
+  height: var(--loading-size);
+  width: var(--loading-size);
+  transform-origin: center;
+  animation: rotate var(--loading-speed) linear infinite;
+  will-change: transform;
+  overflow: visible;
+}
+
+.car {
+  fill: none;
+  stroke: var(--loading-color);
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  animation: stretch calc(var(--loading-speed) * 0.75) ease-in-out infinite;
+  will-change: stroke-dasharray, stroke-dashoffset;
+  transition: stroke 0.5s ease;
+  stroke-width: 3px;
+}
+
+.track {
+  fill: none;
+  stroke: var(--loading-color);
+  opacity: var(--loading-bg-opacity);
+  transition: stroke 0.5s ease;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes stretch {
+  0% {
+    stroke-dasharray: 0, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 75, 150;
+    stroke-dashoffset: -25;
+  }
+  100% {
+    stroke-dashoffset: -100;
+  }
+}
+
+
+
+body.loading .mainVideo .video-overlay .video-overlay-pc .video-anim  .loading {
+  display: flex;
+}
+.mainVideo .video-overlay .video-overlay-pc .video-anim  svg {
+  width: 60px;
+  height: 60px;
+}
