@@ -208,6 +208,9 @@ if (
   videosArray[watchVid].views += 1
   uploadToLocalStorage('videos',videosArray);
   console.log(videosArray[watchVid].views);
+  setTimeout(() => {
+    document.body.classList.remove('waiting')
+  }, 300);
 }
 
 function hideViewNav() {
