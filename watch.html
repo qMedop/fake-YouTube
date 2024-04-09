@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="css/all.min.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/index.css" />
-    <link rel="stylesheet" href="css/watch.css" />
     <link rel="stylesheet" href="css/player.css" />
+    <link rel="stylesheet" href="css/watch.css" />
+    <link rel="stylesheet" href="css/stylem.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,12 +17,13 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400;1,500&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" type="image/x-icon" href="imgs/yt-logo.png" />
     <title>YouTube</title>
   </head>
   <body>
     <div class="web-page">
+      <div class="full-screen-holder"></div>
       <div class="landing">
-        <div class="full-screen-holder"></div>
         <div class="Wleft">
           <div class="videoCont">
             <div class="ambient-effect">
@@ -142,7 +144,7 @@
                           </button>
                         </div>
                         <div class="playPause">
-                          <button id="playPause">
+                          <button class="contain-click" id="playPause">
                             <svg viewBox="0 0 36 36">
                               <path
                                 id="myPath"
@@ -900,7 +902,7 @@
                           </svg>
                         </div>
                         <div class="text">
-                          <span id="likes"></span>
+                          <span id="likes">0</span>
                         </div>
                       </button>
                     </div>
@@ -1077,7 +1079,7 @@
                   </div>
                   <div class="bottom">
                     <div class="videos">
-                      <button id="chammelVideos">
+                      <button class="contain-click" id="chammelVideos">
                         <div class="svg">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -1113,7 +1115,9 @@
               </div>
               <div class="clsoe-about">
                 <div class="clsoe">
-                  <button id="closeAboutBtn">show less</button>
+                  <button class="contain-click" id="closeAboutBtn">
+                    show less
+                  </button>
                 </div>
               </div>
             </div>
@@ -1126,7 +1130,7 @@
                   <span id="commentsCount" class="comments-count">0</span>
                   <span> Comments</span>
                 </div>
-                <div class="sort">
+                <div class="sort contain-click">
                   <div class="svg">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -1148,11 +1152,12 @@
                 <div class="chanenl-img">
                   <img src="imgs/kaska.jpg" alt="chanenl-img" />
                 </div>
-                <form id="commentForm" action="/">
+                <form id="mainCommentForm" action="#">
                   <div class="type-comment">
                     <div class="top">
                       <div
-                        id="commentInput"
+                        class="input"
+                        id="mainCommentInput"
                         placeholder="Add a comment..."
                         contenteditable="true"
                       ></div>
@@ -1161,7 +1166,9 @@
                   <div class="bottom">
                     <div class="comment-submit">
                       <div class="cancel">
-                        <button id="cancelComment">Cancel</button>
+                        <button class="contain-click" id="cancelComment">
+                          Cancel
+                        </button>
                       </div>
                       <div class="submit">
                         <button id="submitComment" type="submit">
@@ -1173,6 +1180,7 @@
                 </form>
               </div>
             </div>
+            <div class="comments-section"></div>
           </div>
         </div>
         <div class="Wright">
@@ -1213,7 +1221,9 @@
         </div>
       </div>
     </div>
+    <script src="js/dataBase.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/upload.js"></script>
     <script>
       if (
         navigator.userAgent.match(/Android/i) ||
@@ -1231,19 +1241,6 @@
       }
     </script>
     <script src="js/watch.js"></script>
-    <script src="js/upload.js"></script>
     <script src="js/home.js"></script>
-
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.9/lottie.min.js"></script>
-    <script>
-      // Load the Lottie animation
-      var animation = lottie.loadAnimation({
-        container: document.getElementById("likeSvg"),
-        renderer: "svg",
-        loop: true, // Set to true if you want the animation to loop
-        autoplay: true, // Set to true to play the animation automatically
-        path: "imgs/Animation - 1703965598548.json",
-      });
-    </script> -->
   </body>
 </html>
