@@ -1,0 +1,1277 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+}
+body {
+  overflow: hidden;
+}
+button {
+  background-color: transparent;
+  border: 1px solid transparent;
+  transition: border 0.5s;
+}
+.mainVideo svg {
+  width: 100%;
+  height: 100%;
+  fill: white;
+}
+.mainVideo .video-overlay button {
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  padding: 0 2px;
+  opacity: .9;
+  border: none;
+}
+body.fullScreen .mainVideo .video-overlay button {
+  width: 54px;
+  height: 54px;
+}
+.mainVideo .videoControlls .controlls .miniPlayer {
+  padding: 0 3px;
+}
+.mainVideo .video-overlay button:hover {
+  opacity: 1;
+}
+.mainVideo .video-overlay button:focus {
+  outline: 1px solid #1b7fcccc;
+  background-color: transparent;
+}
+.mainVideo .video-overlay button:active {
+  outline: none;
+  background-color: transparent !important;
+  border: none;
+}
+@Media (max-width: 1400px) {
+  .mainVideo .video-overlay button {
+    width: 42px;
+    height: 42px;
+  }
+}
+@Media (max-width: 1400px) {
+  .mainVideo .video-overlay button {
+    width: 42px;
+    height: 42px;
+  }
+}
+@Media (max-width: 700px) {
+  .mainVideo .video-overlay button {
+    width: 36px;
+    height: 36px;
+    padding: 0 2px;
+  }
+}
+@Media (max-width: 480px) {
+  .mainVideo .video-overlay button {
+    width: 32px;
+    height: 32px;
+    padding: 0 2px;
+  }
+}
+.mainVideo {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background-color: black;
+  /* min-width: 420px; */
+  overflow: hidden;
+}
+.mainVideo .vidimg {
+  position: relative;
+  height: 100%;
+}
+.mainVideo .vidimg .thumbnail {
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+.mainVideo .vidimg img,
+.mainVideo .vidimg video {
+  width: 100%;
+}
+.mainVideo .vidimg video {
+  aspect-ratio: 16 / 9;
+  position: absolute;
+  filter: brightness(1);
+  height: 100%;
+}
+.mainVideo .videoControlls {
+  position: absolute;
+  bottom: 1px;
+  width: 100%;
+  padding: 0 12px;
+
+}
+.mainVideo .video-overlay .video-overlay-pc .hideView {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: 250ms ease-in-out;
+  pointer-events: none;
+}
+.mainVideo:focus-within .video-overlay .video-overlay-pc .hideView  {
+  opacity: 1;
+}
+.mainVideo {
+  cursor: none;
+  
+}
+.mainVideo.view-UI  {
+  cursor: default;
+}
+.mainVideo.view-UI .video-overlay .video-overlay-pc .hideView  {
+  opacity: 1;
+}
+.mainVideo .videoControlls::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  height: 300%;
+  width: 100%;
+  pointer-events: none;
+  background: linear-gradient(to top, #0f0f0fdb, transparent);
+}
+.mainVideo .video-overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+}
+.mainVideo .video-overlay div {
+  pointer-events: initial;
+}
+.mainVideo .video-overlay .video-top {
+  display: none;
+  justify-content: space-between;
+  color: #f1f1f1;
+  font-family: 'Roboto' , 'Arial';
+  align-items: center;
+  padding: 0 8px;
+  background: linear-gradient(to bottom, #0f0f0f7c, transparent);
+}
+body.fullScreen .mainVideo .video-overlay .video-top{
+  display: flex;
+}
+.mainVideo .video-overlay .video-top h1 {
+  font-weight: 500;
+  font-size: 28px;
+}
+@Media (max-width: 700px) {
+  .mainVideo .video-overlay .video-top h1 {
+    font-size: 18px;
+  }
+}
+.mainVideo .videoControlls .controlls {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+}
+.mainVideo .videoControlls .controlls > div {
+  display: flex;`
+  justify-content: space-between;
+  align-items: center;
+}
+.mainVideo .videoControlls .controlls button div {
+  height: 100%;
+  position: relative;
+}
+.mainVideo .videoControlls .controlls .volume-container{
+  display: flex;
+}
+.mainVideo .videoControlls .controlls .volume-container .volume-changer {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  width: 0px;
+  position: relative;
+  transition: 200ms ease-in-out;
+}
+.mainVideo .videoControlls .controlls .volume-container:hover .volume-changer {
+  margin-right: 10px;
+  width: 52px;
+}
+.mainVideo .videoControlls .controlls .volume-container .volume-changer:focus {
+  margin-right: 10px;
+  width: 52px;
+  outline: 1px solid #1b7fcccc;
+}
+.mainVideo .videoControlls .controlls .volume-container .volume-changer:active {
+  outline: none;
+}
+.mainVideo .videoControlls .controlls .volume-container.active .volume-changer{
+  margin-right: 10px;
+  width: 52px;
+}
+.mainVideo .videoControlls .controlls .volume-container .volume svg  path {
+  transition: .2s ease-in-out;
+}
+.mainVideo .videoControlls .controlls .volume-container .volume svg #volumePath {
+  opacity: 1;
+  
+}
+.mainVideo[data-volumelevel="mid"]  .videoControlls .controlls .volume-container .volume svg #volumePath {
+  opacity: 0;
+} 
+.mainVideo .videoControlls .controlls .volume-container .mute {
+  opacity: 0;
+}
+.mainVideo[data-volumelevel="muted"] .videoControlls .controlls .volume-container .mute {
+  opacity: 1;
+}
+
+
+.mainVideo .videoControlls .controlls .volume-container .volume-changer .line {
+  --volume-position: 1;
+  width: 40px;
+  height: 100%;
+  position: relative;
+  cursor: pointer;
+}
+.mainVideo .videoControlls .controlls .volume-container .volume-changer .line .thumb{
+  position: absolute;
+  left: calc(var(--volume-position) * 100%);
+  background-color: #fff;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.mainVideo .videoControlls .controlls .volume-container .volume-changer .line .thumb::before{
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  background-color: #fff;
+  width: 50px;
+  height: 3px;
+  transform: translateY(-50%);
+}
+.mainVideo .videoControlls .controlls .volume-container .volume-changer .line .thumb::after{
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  background-color: rgba(255,255,255,.2);
+  width: 50px;
+  height: 3px;
+  transform: translateY(-50%);
+}
+.mainVideo .videoControlls .controlls .volume {
+  padding: 0 6px;
+}
+.mainVideo .videoControlls .controlls .time {
+  color: #DDDDDD;
+  display: flex;
+  gap: 4px;
+  font-family: 'Roboto';
+  font-size: 13px;
+}
+.mainVideo .videoControlls .controlls .autoPlay {
+  position: relative;
+}
+.mainVideo .videoControlls .controlls .autoPlay .holder {
+  position: absolute;
+  top: 50%;
+  background-color: #909090;
+  left: 50%;
+  height: 14.4px;
+  width: 38px;
+  border-radius: 12px;
+  transform: translate(-50%, -50%);
+  background-size: cover;
+}
+.mainVideo .videoControlls .controlls .autoPlay .holder::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  left: -2px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-image: url(../imgs/svg/pause.svg);
+  background-size: cover;
+  transition: .2s;
+}
+.mainVideo .videoControlls .controlls .autoPlay.active .holder::after {
+  left: 100%;
+  top: 50%;
+  background-image: url(../imgs/svg/play.svg);
+  background-size: cover;
+  transform: translate(-90%,-50%);
+}
+@media (max-width: 700px) {
+  .mainVideo .videoControlls .controlls .autoPlay .holder {
+    height: 12.4px;
+    width: 28px;
+  }
+  .mainVideo .videoControlls .controlls .autoPlay .holder::after {
+    width: 16px;
+    height: 16px;
+  }
+  .mainVideo .videoControlls .controlls .volume {
+    padding: 0 2px;
+  }
+}
+.mainVideo .videoControlls .controlls .controllsMid {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+}
+.mainVideo .videoControlls .controlls .controllsMid svg{
+  width: 26px;
+}
+.mainVideo .videoControlls .controlls .play,
+.mainVideo .videoControlls .controlls .closetheater,
+.mainVideo .videoControlls .controlls .closefullScreen {
+  display: none;
+}
+.mainVideo  .videoControlls .controlls .playPause svg #myPath {
+  transition: .3s ease-in-out;
+}
+.mainVideo.paused  .videoControlls .controlls .playPause svg #myPath {
+  d: path('M 12,26 18.5,22 18.5,14 12,10 z M 18.5,22 25,18 25,18 18.5,14 z')
+}
+.mainVideo.paused  .videoControlls .controlls .play {
+  display: block;
+}
+
+.landing.theater .Wleft .mainVideo .videoControlls .controlls .opentheater {
+  display: none;
+}
+.landing.theater .Wleft .mainVideo .videoControlls .controlls .closetheater {
+  display: block;
+}
+body.fullScreen .mainVideo .videoControlls .controlls .openFullscreen,
+body.fullScreen .mainVideo .videoControlls .controlls .theaterMode,
+body.fullScreen .mainVideo .videoControlls .controlls .miniPlayer {
+  display: none;
+}
+body.fullScreen .mainVideo .videoControlls .controlls .closefullScreen {
+  display: block;
+}
+body.fullScreen  .mainVideo .videoControlls .controlls .controllsMid {
+  display: block;
+}
+.mainVideo .videoControlls .progress {padding-bottom: 1px;}
+.mainVideo .videoControlls .progress div {
+  background-color: red;
+  height: 3px;
+}
+/* theater Mode  */
+
+.landing.theater  {
+  flex-direction: column;
+  padding: 0;
+  max-width: initial;
+}
+.landing.theater .Wleft  {
+  max-width: initial;
+  width: 100%;
+}
+.landing.theater .Wleft,
+.landing.theater .Wleft .mainVideo,
+.landing.theater .Wleft .mainVideo video{
+  height: 78vh;
+  width: 100%;
+}
+
+/* full-screen Mode  */
+
+nav.hide-nav {
+  top: -54px;
+}
+body.fullScreen .landing {
+  flex-direction: column;
+  padding: 0;
+  transform: translate(0,0);
+  display: block;
+}
+body.fullScreen .Wleft  {
+  max-width: initial;
+  width: 100%;
+}
+body.fullScreen .Wleft .videoCont,
+body.fullScreen .Wleft .mainVideo,
+body.fullScreen .Wleft .mainVideo #mainVideo {
+  height: 100vh !important;
+  width: 100%;
+  border-radius: 0px;
+}
+body.fullScreen::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* timeLine  */
+
+.mainVideo  .timeline-container {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  --progress-position: 0;
+  height: 5px;
+}
+.mainVideo  .timeline-container .timeline {
+  position: relative;
+  height: 5px;
+  width: 100%;
+  transition: height 50ms ease-in;
+}
+.mainVideo  .timeline-container .timeline-holder {
+  --preview-position:0;
+  width: 100%;
+  z-index: 2;
+  padding: 8px 0px 4px 0;
+}
+.mainVideo  .timeline-container .timeline-holder .timeline:focus {
+  outline: 1px solid #1b7fcccc;
+}
+.mainVideo  .timeline-container .timeline-holder .timeline:active {
+  outline: none;
+}
+.mainVideo  .timeline-container .timeline-holder .preview-img-container {
+  position: absolute;
+  height: 120px;
+  top: -36px;
+  transform: translate(-50%, -100%);
+  left: calc(var(--preview-position-img) * 100%);
+  pointer-events: none;
+  aspect-ratio: 16 / 9;
+  opacity: 1;
+  max-height: 200px;
+  display: none;
+  z-index: 1;
+}
+.mainVideo  .timeline-container .timeline-holder .preview-img-container #previewVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 2px solid #fff;
+  border-radius: 12px;
+  background-color: #fff;
+}
+.mainVideo  .timeline .color-container {
+  transition: transform 200ms ease-in-out;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: scaleY(.6);
+  background-color: rgba(255,255,255,.2);
+  overflow: hidden;
+}
+.mainVideo .timeline .color-container div {
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+}
+.mainVideo .timeline .timelineCurrent {
+  z-index: 3;
+  width: calc(var(--progress-position) * 100%);
+  background-color: red;
+}
+.mainVideo .timeline .timelineBufferd {
+  z-index: 1;
+  width: calc(var(--buffered-position) * 1%);
+  background-color: rgba(204, 204, 204, 0.485);
+}
+.mainVideo .timeline .timelineGoing {
+  z-index: 2;
+  width: calc(var(--preview-position) * 100%);
+  background-color: rgba(214, 214, 214, 0.682);
+  opacity: 0;
+}
+.mainVideo .timeline .thumb-indicaror {
+  position: absolute;
+  transform: translateY(-50%) translateX(50%);
+  height: 250%;
+  top: 50%;
+  right: calc((100% - var(--progress-position) * 100%));
+  background-color: red;
+  border-radius: 50%;
+  transition: width 200ms ease-in, height 200ms ease-in;
+  border-radius: 50%;
+  width: 0px;
+  height: 0px;
+  z-index: 2;
+}
+.mainVideo .timeline-holder .timeline #going {
+  position: absolute;
+  top: -10px;
+  transform: translate(-50%, -100%);
+  left: calc(var(--preview-position-img) * 100%);
+  border-radius: 4px;
+  pointer-events: none;
+  color: #DDDDDD;
+  font-family: 'Roboto';
+  font-size: 16px;
+  display: none;
+  z-index: 1;
+}
+.mainVideo .timeline-holder:hover .timeline .timelineGoing {
+  opacity: 1;
+}
+.mainVideo.scrubbing  #mainVideo {
+  filter: blur(10px);
+}
+.mainVideo .timeline-holder:hover .timeline #going,
+.mainVideo.scrubbing  .timeline-holder .timeline #going,
+.mainVideo .timeline-holder:hover  .timeline::before,
+.mainVideo.scrubbing .timeline-holder .timeline::before,
+.mainVideo  .timeline-container .timeline-holder:hover .preview-img-container,
+.mainVideo.scrubbing  .timeline-container .timeline-holder .preview-img-container {
+  display: block;
+}
+.mainVideo.settings .timeline-holder:hover .timeline #going,
+.mainVideo.settings.scrubbing   .timeline-holder .timeline #going,
+.mainVideo.settings  .timeline-holder:hover  .timeline::before,
+.mainVideo.settings.scrubbing .timeline-holder .timeline::before,
+.mainVideo.settings   .timeline-container .timeline-holder:hover .preview-img-container,
+.mainVideo.settings.scrubbing  .timeline-container .timeline-holder .preview-img-container {
+  display: none;
+}
+.mainVideo .timeline-holder:hover .timeline .thumb-indicaror,
+.mainVideo.scrubbing .timeline-holder .timeline .thumb-indicaror {
+  width: 14px;
+  height: 14px;
+}
+.mainVideo .timeline-holder:hover .timeline .color-container,
+.mainVideo.scrubbing .timeline-holder .timeline .color-container{
+  transform: scaleY(1);
+}
+.mainVideo .video-overlay .video-overlay-pc .video-anim {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+}
+.mainVideo .video-overlay .video-overlay-pc .video-anim > div{
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0,0,0,.5);
+  border-radius: 50%;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+@media (max-width: 1400px) {
+  .mainVideo .video-overlay .video-overlay-pc .video-anim > div{
+    width: 40px;
+    height: 40px;
+  }
+}
+@media (max-width: 1000px) {
+  .mainVideo .video-overlay .video-overlay-pc .video-anim > div{
+    width: 32px;
+    height: 32px;
+  }
+}
+@media (max-width: 800px) {
+  .mainVideo .video-overlay .video-overlay-pc .video-anim > div{
+    width: 26px;
+    height: 26px;
+  }
+}
+@media (max-width: 400px) {
+  .mainVideo .video-overlay .video-overlay-pc .video-anim > div{
+    width: 18px;
+    height: 18px;
+  }
+}
+.mainVideo .video-overlay .video-overlay-pc .video-anim .play,
+.mainVideo .video-overlay .video-overlay-pc .video-anim .pause,
+.mainVideo .video-overlay .video-overlay-pc .video-anim .volume{
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  animation: scaleAnimation .5s linear forwards;
+  transform-origin: center;
+}
+.mainVideo.play .video-overlay .video-overlay-pc .video-anim .play {
+  display: flex;
+  padding: 2px;
+}
+.mainVideo.pause .video-overlay .video-overlay-pc .video-anim .pause {
+  display: flex;
+  padding: 3px;
+}
+.mainVideo.volume .video-overlay .video-overlay-pc .video-anim .volume {
+  display: flex;
+  padding: 5px;
+}
+.mainVideo.volumee .video-overlay .video-overlay-pc .video-anim .volume {
+  display: flex;
+  padding: 5px;
+}
+.mainVideo .video-overlay .video-overlay-pc .video-anim .volumePercentage {
+  position: absolute;
+  color: #f1f1f1;
+  font-size: 22px;
+  font-family: 'Roboto';
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 26px 46px;
+  border-radius: 5px;
+  width: 60px;
+  height: 40px;
+  display: flex;
+  transition: 100ms;
+  opacity: 0;
+}
+.mainVideo.volumeValue .video-overlay .video-overlay-pc .video-anim .volumePercentage {
+  opacity: 1;
+
+}
+.mainVideo .video-overlay .video-overlay-pc .video-anim .volume svg #volumePath {
+  opacity: 1;
+  
+}
+.mainVideo[data-volumelevel="mid"]  .video-overlay .video-overlay-pc .video-anim .volume svg #volumePath {
+  opacity: 0;
+} 
+.mainVideo .video-overlay .video-overlay-pc .video-anim .mute {
+  opacity: 0;
+}
+.mainVideo[data-volumelevel="muted"] .video-overlay .video-overlay-pc .video-anim .volume .mute {
+  opacity: 1;
+}
+@keyframes scaleAnimation {
+  0% {
+    transform: translate(-50%,-50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%,-50%) scale(2);
+    opacity: 0;
+    display: none;
+  }
+}
+.mainVideo .video-overlay .video-overlay-pc .video-anim .skip {
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  width: 100px;
+  height: 100px;
+  color: #ddd;
+  font-family: 'Roboto';
+  flex-direction: column;
+  gap: 10px;
+  font-size: 12px;
+}
+.mainVideo .video-overlay .video-overlay-pc .video-anim .skip-forward  {
+  right: 10%;
+  display: none;
+}
+.mainVideo .video-overlay .video-overlay-pc .video-anim .skip-forward .svg  {
+  display: flex;
+  margin: 19px 0 0px 10px;
+  --fade: fade;
+}
+.mainVideo .video-overlay .video-overlay-pc .video-anim .skip-forward .svg  span{
+  border: 9px solid transparent;
+  border-left: 10px solid #ddd;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  opacity: .3;
+}
+.mainVideo .video-overlay .video-overlay-pc .video-anim .skip-forward .svg span:nth-child(1){
+  animation: var(--fade) .3s forwards;
+}
+.mainVideo .video-overlay .video-overlay-pc .video-anim .skip-forward .svg span:nth-child(2){
+  animation: var(--fade) .3s forwards .1s;
+}
+.mainVideo .video-overlay .video-overlay-pc .video-anim .skip-forward .svg span:nth-child(3){
+  animation: var(--fade) .3s forwards .2s;
+}
+.mainVideo .video-overlay .video-overlay-pc .video-anim .skip-backward  {
+  left: 10%;
+  display: none;
+}
+.mainVideo .video-overlay .video-overlay-pc .video-anim .skip-backward .svg  {
+  display: flex;
+  margin: 19px 12px 0px 0px;
+}
+.mainVideo .video-overlay .video-overlay-pc .video-anim .skip-backward .svg  span{
+  border: 9px solid transparent;
+  border-right: 10px solid #ddd;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  opacity: .3;
+}
+.mainVideo .video-overlay .video-overlay-pc .video-anim .skip-backward .svg span:nth-child(3){
+  animation: var(--fade) .6s forwards;
+}
+.mainVideo .video-overlay .video-overlay-pc .video-anim .skip-backward .svg span:nth-child(2){
+  animation: var(--fade) .6s forwards .3s;
+}
+.mainVideo .video-overlay .video-overlay-pc .video-anim .skip-backward .svg span:nth-child(1){
+  animation: var(--fade) .6s forwards .6s;
+}
+.mainVideo.skip-forward .video-overlay .video-overlay-pc .video-anim .skip-forward  {
+  display: flex;
+}
+.mainVideo.skip-backward .video-overlay .video-overlay-pc .video-anim .skip-backward  {
+  display: flex;
+}
+@keyframes fade{
+33% {
+    opacity: .9;
+}
+66% {
+    opacity: .6;
+}
+100% {
+    opacity: .3;
+}
+}
+/* Mobile */
+body.mobile .mainVideo .video-overlay button {
+  width: 26px;
+  height: 26px;
+  opacity: 1;
+  cursor: default;
+  pointer-events: none;
+}
+body.mobile .mainVideo .video-overlay button:focus {
+  outline: none;
+}
+body.mobile .mainVideo.view-UI .video-overlay button {
+  pointer-events: all;
+}
+
+body.mobile .mainVideo {
+  overflow: initial;
+}
+body.mobile .mainVideo .video-overlay {
+  opacity: 1;
+}
+body.mobile .mainVideo.scrubbing {
+  
+}
+
+.mainVideo .video-overlay .video-overlay-mobile {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  display: none;
+}
+body.mobile .mainVideo .video-overlay .video-overlay-mobile {
+  display: block;
+}
+.mainVideo .video-overlay .video-overlay-mobile .mobile-conrolls {
+  transition: 250ms ease-in-out;
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+}
+.mainVideo.view-UI .video-overlay .video-overlay-mobile .mobile-conrolls {
+  opacity: 1;
+}
+.mainVideo .video-overlay .video-overlay-mobile .mobile-conrolls .top-contrrols {
+  padding: 8px 10px 10px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.mainVideo .video-overlay .video-overlay-mobile .mobile-conrolls .top-contrrols .left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #f1f1f1;
+  font-family: 'Roboto';
+}
+.mainVideo .video-overlay .video-overlay-mobile .mobile-conrolls .top-contrrols .caption {
+  padding: 4px;
+}
+.mainVideo .video-overlay .video-overlay-mobile .mobile-conrolls .top-contrrols .right{
+  display: flex;
+  gap: 10px;
+}
+.mainVideo .video-overlay .video-overlay-mobile .mobile-conrolls .top-contrrols .autoPlay {
+  width: 34px;
+}
+.mainVideo .video-overlay .video-overlay-mobile .mobile-conrolls .top-contrrols .autoPlayHolder {
+  position: relative;
+    height: 100%;
+}
+.mainVideo .video-overlay .video-overlay-mobile .mobile-conrolls .top-contrrols .autoPlayHolder  {
+  position: relative;
+}
+.mainVideo .video-overlay .video-overlay-mobile .mobile-conrolls .top-contrrols .autoPlayHolder  .holder {
+  position: absolute;
+  top: 50%;
+  background-image: url(../imgs/svg/autoplay.svg);
+  left: 50%;
+  height: 14px;
+  width: 34px;
+  border-radius: 12px;
+  transform: translate(-50%, -50%);
+  background-size: cover;
+}
+.mainVideo .video-overlay .video-overlay-mobile .mobile-conrolls .top-contrrols .autoPlayHolder  .holder::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-image: url(../imgs/svg/pause.svg);
+  background-size: cover;
+  transition: .3s;
+}
+.mainVideo .video-overlay .video-overlay-mobile .mobile-conrolls .top-contrrols .autoPlay.active .autoPlayHolder  .holder::after {
+  left: 100%;
+  top: 50%;
+  background-image: url(../imgs/svg/play.svg);
+  background-size: cover;
+  transform: translate(-90%,-50%);
+}
+.mainVideo .video-overlay .video-overlay-mobile .mobile-conrolls  .mid-contrrols {
+  position: absolute;
+  display: flex;
+  gap: 35px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.mainVideo .video-overlay .video-overlay-mobile .mobile-conrolls  .mid-contrrols div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mainVideo .video-overlay .video-overlay-mobile .mobile-conrolls  .mid-contrrols div.inactive button {
+  opacity: 0.5;
+}
+.mainVideo .video-overlay .video-overlay-mobile .mobile-conrolls  .mid-contrrols div button {
+  width: 35px;
+  height: 35px;
+  padding: 8px;
+  background-color: rgba(0, 0, 0, 0.318);
+  border-radius: 50%;
+}
+.mainVideo .video-overlay .video-overlay-mobile .mobile-conrolls  .mid-contrrols div button:active {
+  background-color: rgba(220, 220, 220, 0.094);
+}
+.mainVideo .video-overlay .video-overlay-mobile .mobile-conrolls  .mid-contrrols .playPause button {
+  width: 53px;
+  height: 53px;
+  padding: 4px;
+}
+.mainVideo .video-overlay .video-overlay-mobile   .bottom-contrrols .fullScreen button {
+  padding: 0px;
+}
+@Media (max-width: 300px) {
+  .mainVideo .video-overlay .video-overlay-mobile .mobile-conrolls  .mid-contrrols {
+    gap: 15px;
+  }
+  .mainVideo .video-overlay .video-overlay-mobile .mobile-conrolls  .mid-contrrols div button {
+    width: 30px;
+    height: 30px;
+    padding: 7px;
+  }
+  .mainVideo .video-overlay .video-overlay-mobile .mobile-conrolls  .mid-contrrols .playPause button {
+    width: 48px;
+    height: 48px;
+    padding: 4px;
+  }
+}
+@Media (min-width: 800px) {
+  .mainVideo .video-overlay .video-overlay-mobile .mobile-conrolls  .mid-contrrols {
+    gap: 35px;
+  }
+  .mainVideo .video-overlay .video-overlay-mobile .mobile-conrolls  .mid-contrrols div button {
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+  }
+  .mainVideo .video-overlay .video-overlay-mobile .mobile-conrolls  .mid-contrrols .playPause button {
+    width: 58px;
+    height: 58px;
+    padding: 4px;
+  }
+}
+@Media (min-width: 1100px) {
+  .mainVideo .video-overlay .video-overlay-mobile .mobile-conrolls  .mid-contrrols {
+    gap: 35px;
+  }
+  .mainVideo .video-overlay .video-overlay-mobile .mobile-conrolls  .mid-contrrols div button {
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+  }
+  .mainVideo .video-overlay .video-overlay-mobile .mobile-conrolls  .mid-contrrols .playPause button {
+    width: 68px;
+    height: 68px;
+    padding: 4px;
+  }
+}
+.mainVideo .video-overlay .video-overlay-mobile .mobile-conrolls  .mid-contrrols .playPause svg #myPath {
+  transition: .3s ease-in-out;
+}
+.mainVideo.paused .video-overlay .video-overlay-mobile .mobile-conrolls  .mid-contrrols .playPause svg #myPath {
+  d: path('M 12,26 18.5,22 18.5,14 12,10 z M 18.5,22 25,18 25,18 18.5,14 z')
+}
+.mainVideo .video-overlay .video-overlay-mobile  .bottom-contrrols {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.mainVideo .video-overlay .video-overlay-mobile  .bottom-contrrols .upper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 16px;
+  opacity: 0;
+  transition: 250ms ease-in-out;
+}
+.mainVideo.view-UI .video-overlay .video-overlay-mobile  .bottom-contrrols .upper {
+  opacity: 1;
+}
+.mainVideo.scrubbing .video-overlay .video-overlay-mobile  .bottom-contrrols .upper {
+  opacity: 0;
+}
+.mainVideo.scrubbing .video-overlay .video-overlay-mobile  .mobile-conrolls {
+  opacity: 0;
+}
+body.mobile .mainVideo .timeline-holder:hover .timeline .color-container,
+body.mobile .mainVideo.scrubbing .timeline-holder .timeline .color-container {
+  transform: scaleY(0.6);
+}
+.mainVideo .video-overlay .video-overlay-mobile  .bottom-contrrols .upper .time {
+  color: #DDDDDD;
+  display: flex;
+  gap: 4px;
+  font-family: 'Roboto';
+  font-size: 11px;
+}
+body.fullScreen .mainVideo .video-overlay .video-overlay-mobile  .bottom-contrrols {
+  bottom: 30px;
+  padding: 0 40px;
+  opacity: 0;
+}
+body.fullScreen .mainVideo .video-overlay .video-overlay-mobile  .top-contrrols {
+  padding: 10px 40px;
+}
+body.fullScreen .mainVideo.view-UI .video-overlay .video-overlay-mobile  .bottom-contrrols {
+  opacity: 1;
+}
+body.fullScreen .mainVideo .video-overlay .video-overlay-mobile  .bottom-contrrols .upper {
+  padding: 0 0 2px 0;
+}
+body.mobile .floating .landing {
+  padding: 0;
+}
+body.mobile .mainVideo {
+  min-width: 100%;
+  width: 100%;
+}
+body.mobile .mainVideo .video-overlay .video-overlay-pc {
+  display: none;
+}
+body.mobile .mainVideo .timeline .thumb-indicaror {
+  right: calc((100% - var(--thumb-position) * 100%));
+}
+body.mobile .mainVideo.scrubbing  #mainVideo {
+  filter: blur(0px);
+}
+body.mobile  .mainVideo .timeline-container {
+  margin-bottom: 0px;
+}
+body.mobile .mainVideo.scrubbing .timeline-holder .timeline .thumb-indicaror  {
+transition: 0s;
+}
+body.mobile .mainVideo.scrubbing .timeline-holder:hover .timeline .thumb-indicaror  {
+  width: 0px;
+  height: 0px;
+}
+body.mobile .mainVideo.scrubbing .timeline-holder .timeline .thumb-indicaror {
+  width: 20px;
+  height: 20px;
+}
+
+/* settings Section */
+.mainVideo .settings-overlay  {
+  background-color: #1c1c1ce6;
+  position: absolute;
+  width: 270px;
+  bottom: 70px;
+  right: 0px;
+  border-radius: 12px;
+  transition: opacity 0.2s, height 0.2s;
+  opacity: 0;
+  pointer-events: none !important;
+  overflow: hidden hidden;
+}
+.mainVideo .settings-overlay  div,
+.mainVideo .settings-overlay button {
+  pointer-events: none !important;
+}
+.mainVideo.settings .settings-overlay .settings-insider{
+  overflow: hidden auto;
+  height: 100%;
+
+}
+.mainVideo.settings .settings-overlay,
+.mainVideo.settings .settings-overlay  div,
+.mainVideo.settings .settings-overlay button  {
+  opacity: 1;
+  pointer-events: all !important;
+  font-family: 'Roboto';
+}
+.mainVideo .videoControlls .controlls .settings svg path {
+  transition: .2s;
+  transform: rotate(0deg);
+  transform-origin: center;
+}
+.mainVideo.settings .videoControlls .controlls .settings svg path {
+  transform: rotate(60deg);
+}
+.mainVideo .settings-overlay .settings-insider button {
+  display: flex;
+  height: 40px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  color: #f1f1f1;
+
+}
+.mainVideo .settings-overlay .settings-insider button:hover {
+  background-color:#ffffff1a;
+}
+.mainVideo .settings-overlay .settings-insider button .left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.mainVideo .settings-overlay .settings-insider button .left .svg {
+  height: 24px;
+  width: 24px;
+}
+.mainVideo .settings-overlay .settings-insider button svg {
+  height: 24px;
+  width: 24px;
+}
+.mainVideo .settings-overlay .settings-insider button .right .arrow{
+  height: 24px;
+  width: 24px;
+}
+.mainVideo .settings-overlay .settings-insider button .slider .holder {
+  width: 36px;
+  height: 14px;
+  background: #ffffff4d;
+  border-radius: 14px;
+  position: relative;
+  transition: .1s;
+}
+.mainVideo .settings-overlay .settings-insider button .slider .slide {
+  width: 20px;
+  height: 20px;
+  background: #bdbdbd;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  transition: .1s;
+
+}
+.mainVideo .settings-overlay .settings-insider button .slider.active .holder {
+  background: #ff0000;
+}
+.mainVideo .settings-overlay .settings-insider button .slider.active .slide {
+  background: #f1f1f1;
+  left: 16px;
+}
+.mainVideo .settings-overlay .settings-insider button .right {
+  display: flex;
+  align-items: center;
+}
+.mainVideo .settings-overlay .settings-insider button .right .option{
+  color: #ccc;
+
+}
+.mainVideo .settings-overlay .settings-insider button .text,
+.mainVideo .settings-overlay .settings-insider button .right .option  {
+  transform: translateY(-1px);
+}
+
+/* .mainVideo .settings-overlay .settings-insider > div {
+} */
+/* .mainVideo .settings-overlay.active {
+  transition: 1s;
+}
+.mainVideo .settings-overlay.active  .main {
+  display: none;
+}
+.mainVideo .settings-overlay  .main {
+  transition: 1s;
+
+}
+.mainVideo .settings-overlay.active  .second{
+  display: block;
+} */
+.mainVideo .settings-overlay  .second{
+  display: none;
+  transition: 1s;
+}
+.videoTittle {
+
+}
+
+.mainVideo .settings-overlay .settings-insider {
+    display: none;
+    position: absolute;
+    width: 100%;
+    left: 100%;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0 !important;
+    transition: .2s;
+    bottom: 0;
+}
+.mainVideo .settings-overlay .settings-insider.active {
+  display: block;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  pointer-events: all;
+  z-index: 1;
+  opacity: 1 !important;
+}
+.mainVideo .settings-overlay .settings-insider.playback-panel {
+  height: 386px;
+}
+.mainVideo .settings-overlay .settings-insider .header {
+  padding: 0 0 5px 0;
+  border-bottom: 1px solid #6d6d6d91;
+}
+.mainVideo .settings-overlay .settings-insider .header svg{
+  opacity: 1 !important;
+}
+.mainVideo .settings-overlay .settings-insider .header button .left {
+  cursor: pointer;
+}
+.mainVideo .settings-overlay .settings-insider .header button:hover {
+  background-color: transparent;
+  cursor: default;
+}
+.mainVideo .settings-overlay .settings-insider:not(.main) > div:nth-child(2){
+  padding-top: 6px;
+}
+/* .mainVideo .settings-overlay .settings-insider:not(.main) > div:last-child{
+  padding-bottom: 2px;
+} */
+.mainVideo .settings-overlay .settings-insider .playback-panel-content > div svg {
+  opacity: 0;
+  padding: 1px;
+}
+.mainVideo .settings-overlay .settings-insider .playback-panel-content > div.active svg {
+  opacity: 1;
+}
+.mainVideo .settings-overlay .settings-insider .settings-insider-content {
+  padding: 10px 0px;
+  
+}
+.mainVideo .settings-overlay .settings-insider::-webkit-scrollbar-track {
+  background-color: #1e1e1ef9;
+}
+.mainVideo .settings-overlay .settings-insider::-webkit-scrollbar-thumb {
+    background-color: hsla(0, 0%, 67%, 0.711);
+    border-radius: 1rem;
+    border: 4px solid #1e1e1e;
+}
+
+.mainVideo .video-overlay .video-overlay-pc .video-anim  .loading {
+  display: none;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0;
+  background-color: transparent;
+}
+
+.container {
+  --loading-size: 40px;
+  --loading-color: #f1f1f1;
+  --loading-speed: 2s;
+  --loading-bg-opacity: 0;
+  height: var(--loading-size);
+  width: var(--loading-size);
+  transform-origin: center;
+  animation: rotate var(--loading-speed) linear infinite;
+  will-change: transform;
+  overflow: visible;
+}
+
+.car {
+  fill: none;
+  stroke: var(--loading-color);
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  animation: stretch calc(var(--loading-speed) * 0.75) ease-in-out infinite;
+  will-change: stroke-dasharray, stroke-dashoffset;
+  transition: stroke 0.5s ease;
+  stroke-width: 3px;
+}
+
+.track {
+  fill: none;
+  stroke: var(--loading-color);
+  opacity: var(--loading-bg-opacity);
+  transition: stroke 0.5s ease;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes stretch {
+  0% {
+    stroke-dasharray: 0, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 75, 150;
+    stroke-dashoffset: -25;
+  }
+  100% {
+    stroke-dashoffset: -100;
+  }
+}
+
+
+
+body.loading .mainVideo .video-overlay .video-overlay-pc .video-anim  .loading {
+  display: flex;
+}
+.mainVideo .video-overlay .video-overlay-pc .video-anim  svg {
+  width: 60px;
+  height: 60px;
+}
