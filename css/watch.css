@@ -1,10 +1,5 @@
 .landing {
   background-color: #0f0f0f;
-  -o-transform: translateX(72px) translateY(0px);
-  -webkit-transform: translateX(0) translateY(0px);
-  -moz-transform: translateX(72px) translateY(0px);
-  -ms-transform: translateX(72px) translateY(0px);
-  transform: translateX(0px) translateY(0px);
   height: initial;
   width: 100%;
   padding: 24px;
@@ -805,4 +800,8 @@ body.mobile .videoCont {
 }
 body.mobile.ambient-mode .ambient-effect {
   filter: blur(50px);
+}
+body .waiting-load {
+  top: 54px;
+  left: 0px;
 }
