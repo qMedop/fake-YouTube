@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/all.min.css" />
+  <link rel="stylesheet" href="css/player.css" />
+  <link rel="stylesheet" href="css/login.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400;1,500&display=swap"
+    rel="stylesheet" />
+  <link rel="icon" type="image/x-icon" href="imgs/yt-logo.png" />
+  <title>YouTube</title>
+</head>
+
+<body>
+  <div class="web-page">
+    <div class="landing">
+      <div class="login">
+        <div class="login-inner">
+          <form id="loginForm">
+            <div class="user">
+              <label for="user">username</label>
+              <input id="user" type="text">
+            </div>
+            <div class="channel-name">
+              <label for="name">Channel Name</label>
+              <input id="name" type="text">
+            </div>
+            <div class="pass">
+              <label for="pass">Password</label>
+              <input id="pass" type="password">
+            </div>
+            <div class="image">
+              <label for="img">image</label>
+              <input id="img" type="file" accept="image/png, image/jpeg" />
+            </div>
+            <div class="images-viewer">
+              <div class="image-1">
+                <img src="imgs/user.jpg" alt="">
+              </div>
+              <div class="image-2">
+                <img src="imgs/user.jpg" alt="">
+              </div>
+              <div class="image-3">
+                <img src="imgs/user.jpg" alt="">
+              </div>
+            </div>
+            <div class="action">
+              <div class="submit">
+                <input id="submit" type="submit">
+              </div>
+              <div class="reset">
+                <input id="reset" type="reset">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="js/dataBase.js"></script>
+    <script src="js/htmlElements.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/login.js"></script>
+</body>
+
+</html>

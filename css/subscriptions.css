@@ -1,0 +1,15 @@
+body#subscriptions .right-nav .left .subs svg path, .right-nav-open .left .subs svg path {
+  d: path("M20 7H4V6h16v1zm2 2v12H2V9h20zm-7 6-5-3v6l5-3zm2-12H7v1h10V3z")
+}
+.subscriptions-page {
+  padding: 24px;
+}
+.subscriptions-page .top-headder {
+  margin-top: 24px;
+}
+.subscriptions-page .top-headder h1 {
+  font-family: 'Roboto', 'Arial','sans-serif';
+  color: #F1F1F1;
+  font-size: 20px;
+  font-weight: 500;
+}

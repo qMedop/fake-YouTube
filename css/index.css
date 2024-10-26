@@ -1,0 +1,227 @@
+.landing {
+  padding-bottom: 40px;
+  height: auto;
+  max-width: 2000px;
+  margin-inline: auto;
+}
+.right-nav .left .home svg path ,
+.right-nav-open .left .home svg path{
+  d: path('M4 21V10.08l8-6.96 8 6.96V21h-6v-6h-4v6H4z');
+}
+@media (max-width: 700px) {
+  .landing {
+    max-width: 550px;
+    margin: 0 auto;
+  }
+}
+.landing .sugg {
+  overflow-x: scroll;
+  display: flex;
+  user-select: none;
+  padding: 0px 16px;
+  height: 56px;
+}
+.landing .sugg::-webkit-scrollbar {
+  display: none;
+}
+.landing .sugg {
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    width: 10px;
+  }
+  display: flex;
+}
+.landing .sugg .scroll-b {
+  top: initial;
+  transform: initial;
+  height: 100%;
+  background-color: #0f0f0f;
+  border-radius: initial;
+  width: 56px;
+}
+.landing .sugg .scroll-b button {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+.landing .sugg .items button {
+  padding: 8px 12px;
+  background-color: #ffffff1a;
+  color: #f1f1f1;
+  font-family: sans-serif;
+  margin: 10px 6px;
+  height: fit-content;
+  width: fit-content;
+  white-space: nowrap;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.landing .sugg button:hover {
+  background-color: #ffffff32;
+}
+.landing .sugg button:focus {
+  background-color: #dbdbdb56;
+}
+.landing .sugg button.active:focus {
+  background-color: #ffffff;
+}
+.landing .sugg button.active:active {
+  background-color: #ffffff;
+}
+.landing .sugg .last {
+  width: 50px;
+}
+.landing .sugg .active {
+  background-color: #f1f1f1;
+  color: #0f0f0a;
+}
+.landing .sugg .active:hover {
+  background-color: #f1f1f1;
+}
+
+.landing .one {
+  display: flex;
+}
+.landing .back,
+.landing .next {
+  color: #fff;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0f0f0f;
+  cursor: pointer;
+  z-index: 1;
+}
+.landing .sugg .l-scroll-b::after {
+  position: absolute;
+  content: "";
+  width: 50px;
+  height: 100%;
+  left: 56px;
+  background: linear-gradient(to right, #0f0f0f 20%, rgba(33, 33, 33, 0) 80%);
+  user-select: none;
+}
+.landing .sugg .r-scroll-b::after {
+  position: absolute;
+  content: "";
+  width: 50px;
+  height: 100%;
+  right: 56px;
+  background: linear-gradient(to left, #0f0f0f 20%, rgba(33, 33, 33, 0) 80%);
+}
+
+
+.videosCont .video.active .timeline-container {
+  display: flex;
+}
+:root {
+  --flotaing-transition: .1s;
+}
+.floating-video {
+  position: fixed;
+  left: 0;
+  top: 0px;
+  width: 100%;
+  height: 100vh;
+  background-color: #0f0f0f;
+  z-index: 101;
+  transition: var(--flotaing-transition);
+  display: none;
+  overflow: hidden;
+}
+.floating-video .Wleft{
+  width: 100%;
+  transition: 0s;
+  display: flex;
+  justify-content: space-between;
+}
+body.mobile.floating .landing {
+  padding-bottom: 124px;
+}
+body.mini-palyer .floating-video {
+top: initial ;
+height: 58px ;
+}
+body.mini-palyer .floating-video .Wleft{
+  height: 100%;
+}
+body.swiping .floating-video .Wleft{
+  height: initial;
+}
+.floating-video .Wleft .mainVideo {
+  transition: var(--flotaing-transition);
+  min-height: 58px;
+}
+body.swiping .floating-video,
+body.swiping .floating-video .Wleft,
+body.swiping .floating-video .Wleft .mainVideo,
+body.swiping .floating-video .Wleft,
+body.swiping .floating-video .Wleft  .floating-conrolls,
+body.swiping .mobile-bottom-bar  {
+  transition: 0s;
+}
+
+.floating-video .Wleft .videoCont{
+  width: 100%;
+}
+.floating-video .Wleft  .floating-conrolls {
+  width: 0%;
+  transition: var(--flotaing-transition);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+.floating-video .Wleft  .floating-conrolls button {
+  height: 58px;
+  width: 46px;
+}
+.floating-video .Wleft  .floating-conrolls svg {
+  height: 28px;
+  width: 28px;
+}
+body.mini-palyer .floating-video .Wleft  .floating-conrolls {
+  width: 200%;
+}
+body.mini-palyer .floating-video .Wleft .video-overlay{
+  opacity: 0;
+}
+body.swiping .floating-video .Wleft .video-overlay{
+  opacity: 0;
+  }
+/* body.mini-palyer .floating-video .Wleft .mainVideo  {
+  height: 64px !important;
+} */
+.floating-video .Wright{
+  width: 100%;
+  overflow-y: scroll;
+  height: 100%;
+  opacity: 1;
+  /* transition: .4s; */
+}
+.floating-video .Wright::-webkit-scrollbar {
+  display: none;
+}
+body.mini-palyer .floating-video .Wright{
+  opacity: 0;
+}
+/* body .floating {
+  overflow: hidden;
+} */
+/* video {
+  object-fit: cover;
+} */
+
+iframe {
+  border: none;
+  width: 100%;
+}

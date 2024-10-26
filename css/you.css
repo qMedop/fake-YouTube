@@ -1,0 +1,182 @@
+.sections,
+.channel-top{
+  margin: auto;
+  max-width: 1284px;
+}
+@media (max-width:1416px) {
+  .sections,
+  .channel-top{
+    max-width: 1070px;
+  }
+}
+@media (max-width:1200px) {
+  .sections,
+  .channel-top{
+    margin: auto;
+    max-width: 856px;
+  }
+}
+@media (max-width:985px) {
+  .sections,
+  .channel-top{
+    margin: auto;
+    max-width: 642px;
+  }
+}
+@media (max-width:788px) {
+  .sections,
+  .channel-top{
+    margin: auto;
+    max-width: 428px;
+  }
+}
+@media (max-width:490px) {
+  .sections{
+    margin: auto;
+    max-width: 214px;
+  }
+  .channel-top {
+    max-width: initial;
+  }
+}
+.right-nav .left .you svg path{
+  d: path("M4 20h14v1H3V6h1v14zM21 3v15H6V3h15zm-4 7.5L11 7v7l6-3.5z")
+}
+.channel-section {
+  padding: 24px 0px 4px;
+  display: flex;
+
+}
+.channel-section .c-img {
+  margin: 0 24px 0 0;
+  display: flex;
+}
+.channel-section .c-img img{
+  width: 120px;
+  height:120px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.channel-section .channel-info {
+  flex: 1;
+}
+.channel-section .channel-info .c-name {
+  background-color: #0f0f0f;
+}
+.channel-section .channel-info .c-name h1{
+  font-size: 36px;
+  font-weight: 500;
+  color: #F1F1F1;
+  font-family: 'Roboto', 'Arial';
+  margin-bottom: 4px;
+  line-height: 50px;
+  overflow: hidden;
+  display: block;
+  max-height: 100px;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+.channel-section .c-info{
+  overflow: hidden;
+}
+.channel-section .channel-info .c-stat {
+  display: flex;
+}
+.channel-section .channel-info .c-stat div {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #AAAAAA;
+  font-family: 'Roboto', 'Arial';
+  line-height: 20px;
+  font-weight: 400;
+}
+.channel-section .channel-info .c-stat a {
+  color: #AAAAAA;
+  transition: 300ms;
+}
+.channel-section .channel-info .c-stat a:hover {
+  color: #fff;
+}
+.channel-section .channel-info .c-about {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #AAAAAA;
+  font-family: 'Roboto', 'Arial';
+  padding: 10px 0;
+  cursor: pointer;
+}
+.channel-section .channel-info .c-about .svg {
+  width: 24px;
+  height: 24px;
+}
+.channel-section .channel-info .c-buttons {
+  padding: 6px 0;
+}
+.channel-section .channel-info .c-buttons > div > div {
+  margin: 0px 8px 8px 0px ;
+  display: inline-block;
+}
+.channel-section .channel-info .c-buttons  button{
+  font-size: 12px;
+  line-height: 34px;
+  padding: 0 16px;
+  border-radius: 18px;
+  font-family: 'Roboto', 'Arial';
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.channel-section .channel-info .c-buttons  button .svg {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  margin-right: 4px;
+  margin-left: -4px;
+}
+@media (max-width:524px) {
+  .channel-section .c-img img{
+    width: 72px;
+    height: 72px;
+  }
+  .channel-section .channel-info .c-name h1 {
+    font-size: 24px;
+  }
+}
+@media (max-width:490px) {
+  .channel-top {
+    margin: 0 24px;
+    max-width: initial;
+  }
+}
+.sections .section > .headder {
+  margin-top: 24px;
+}
+.sections .section > .content {
+  margin-top: 12px;
+}
+.sections .section .headder{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sections .section .headder h1{
+  font-size: 20px;
+  font-weight: 500;
+  color: #F1F1F1;
+}
+.sections .section .headder .view-all a{
+  font-family: 'Roboto', 'Arial';
+  font-size: 14px;
+  padding: 0 15px;
+  height: 36px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+}
